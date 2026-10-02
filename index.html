@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Utama Admin PPDB - SMK Binamitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN untuk Grafik Visual -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-[#f4f7fe] font-sans text-slate-800">
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="w-64 bg-[#0B132B] text-slate-300 flex flex-col justify-between border-r border-slate-800 select-none flex-shrink-0">
+            <div>
+                <!-- LOGO & BRAND -->
+                <div class="p-4 flex items-center space-x-3 border-b border-slate-800/80">
+                    <div
+                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 shadow-md overflow-hidden flex-shrink-0">
+                        <img src="logo.png" alt="Logo SMK Binamitra" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-white text-sm tracking-wide">SMK BINAMITRA</h2>
+                        <p class="text-[10px] text-slate-400">Portal PPDB Online</p>
+                    </div>
+                </div>
+
+                <div class="p-4 grid grid-cols-2 gap-2 border-b border-slate-800/80 bg-slate-900/50">
+                    <div class="bg-emerald-950/60 border border-emerald-800/50 rounded-lg p-2 text-center">
+                        <span class="block text-[9px] text-emerald-400 font-semibold uppercase">TA 2026/2027</span>
+                    </div>
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-lg p-2 text-center">
+                        <span class="block text-[9px] text-slate-300 font-semibold uppercase">ID: SMKBN01</span>
+                    </div>
+                </div>
+
+                <nav class="p-3 space-y-1 text-sm">
+                    <a href="index.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/20">
+                        <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="data-siswa.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-users w-4 text-center"></i>
+                        <span>Data Calon Siswa</span>
+                    </a>
+                    <a href="jurusan.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-graduation-cap w-4 text-center"></i>
+                        <span>Data Jurusan & Kuota</span>
+                    </a>
+                    <a href="laporan.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-file-lines w-4 text-center"></i>
+                        <span>Laporan Rekapitulasi</span>
+                    </a>
+                    <a href="pengumuman.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-bullhorn w-4 text-center"></i>
+                        <span>Pengumuman</span>
+                    </a>
+                    <a href="pengaturan.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-gear w-4 text-center"></i>
+                        <span>Pengaturan Akun</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="p-4 border-t border-slate-800/80 bg-slate-900/40 text-xs">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="text-slate-400 font-medium">SERVER PPDB</span>
+                    <span class="bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded">ONLINE</span>
+                </div>
+                <p class="text-[10px] text-slate-500">Aktif & Terhubung / Terbuka</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            <header
+                class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-8 sticky top-0 z-10 shadow-sm">
+                <div class="flex items-center space-x-3 text-xs font-semibold text-slate-600">
+                    <i class="fa-solid fa-house text-indigo-600"></i>
+                    <span>Dashboard Utama Admin PPDB</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="bukaModalTambah()"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Tambah Siswa Baru</span>
+                    </button>
+                    <div class="flex items-center space-x-3 border-l pl-4 border-slate-200">
+                        <div
+                            class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs">
+                            AD</div>
+                        <span class="text-xs font-bold text-slate-700">Admin PPDB</span>
+                        <a href="login.html"
+                            class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1.5 rounded-xl transition flex items-center space-x-1.5 ml-2">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Keluar</span>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <main class="p-8 space-y-6">
+                <!-- WELCOME BANNER -->
+                <div
+                    class="relative bg-gradient-to-r from-indigo-900 via-indigo-800 to-blue-700 rounded-2xl p-8 text-white shadow-xl overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div
+                        class="absolute right-0 top-0 translate-x-8 -translate-y-8 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none">
+                    </div>
+                    <div class="relative z-10">
+                        <span
+                            class="bg-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block border border-white/20">Portal
+                            Resmi Penerimaan</span>
+                        <h1 class="text-2xl md:text-3xl font-black mb-2">Selamat Datang, Admin PPDB! 👋</h1>
+                        <p class="text-indigo-100 text-xs md:text-sm max-w-xl">Pantau statistik penerimaan peserta didik
+                            baru SMK Binamitra tahun ajaran 2026/2027 secara real-time dan kelola berkas verifikasi
+                            dengan mudah.</p>
+                    </div>
+                    <div class="relative z-10 flex flex-col sm:flex-row gap-3">
+                        <a href="data-siswa.html"
+                            class="bg-white hover:bg-slate-100 text-indigo-900 font-bold text-xs px-5 py-3 rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                            <span>Kelola Data Siswa</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- STATS CARDS DINAMIS -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <a href="data-siswa.html"
+                        class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-indigo-400 transition group block relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-bl-full -z-0"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total
+                                    Pendaftar</span>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-base shadow-sm">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+                            </div>
+                            <h3 id="statTotal" class="text-2xl font-black text-slate-900 mb-1">0</h3>
+                            <div class="flex items-center text-[11px] text-emerald-600 font-bold space-x-1">
+                                <i class="fa-solid fa-arrow-trend-up"></i>
+                                <span>Data riil aktif</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="data-siswa.html"
+                        class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-emerald-400 transition group block relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-bl-full -z-0"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between mb-4">
+                                <span
+                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">Terverifikasi</span>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-base shadow-sm">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                            </div>
+                            <h3 id="statVerifikasi" class="text-2xl font-black text-slate-900 mb-1">0</h3>
+                            <p class="text-[11px] text-emerald-600 font-bold">Berkas valid & disetujui</p>
+                        </div>
+                    </a>
+
+                    <a href="data-siswa.html"
+                        class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-amber-400 transition group block relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-bl-full -z-0"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Menunggu
+                                    Validasi</span>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-base shadow-sm">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
+                                </div>
+                            </div>
+                            <h3 id="statMenunggu" class="text-2xl font-black text-slate-900 mb-1">0</h3>
+                            <p class="text-[11px] text-amber-600 font-bold">Perlu dicek segera</p>
+                        </div>
+                    </a>
+
+                    <a href="data-siswa.html"
+                        class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-rose-400 transition group block relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-rose-50 rounded-bl-full -z-0"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ditolak /
+                                    Revisi</span>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold text-base shadow-sm">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                </div>
+                            </div>
+                            <h3 id="statDitolak" class="text-2xl font-black text-slate-900 mb-1">0</h3>
+                            <p class="text-[11px] text-rose-600 font-bold">Berkas salah/kurang</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- GRAFIK STATISTIK CHART.JS (MEMENUHI KETENTUAN MILESTONE 3) -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
+                            <i class="fa-solid fa-chart-bar text-indigo-600"></i>
+                            <span>Grafik Visual Statistik Pendaftar Berdasarkan Jalur</span>
+                        </h3>
+                        <span
+                            class="text-[10px] bg-indigo-50 text-indigo-700 font-bold px-2.5 py-1 rounded-full">Chart.js
+                            Real-Time</span>
+                    </div>
+                    <div class="w-full h-72 relative">
+                        <canvas id="pendaftarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- INFORMASI JALUR -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
+                    <h3 class="font-bold text-slate-900 text-sm mb-4 flex items-center space-x-2">
+                        <i class="fa-solid fa-bullhorn text-indigo-600"></i>
+                        <span>Informasi Sistem & Jalur Pendaftaran</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span
+                                class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full inline-block mb-2">Zonasi
+                                (50%)</span>
+                            <h4 class="font-bold text-slate-900 text-xs mb-1">Jalur Domisili Terdekat</h4>
+                            <p class="text-[11px] text-slate-500">Kuota 50% dari total daya tampung sekolah berdasarkan
+                                jarak tempat tinggal.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span
+                                class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full inline-block mb-2">Prestasi
+                                (30%)</span>
+                            <h4 class="font-bold text-slate-900 text-xs mb-1">Jalur Nilai & Kejuaraan</h4>
+                            <p class="text-[11px] text-slate-500">Kuota 30% berdasarkan rerata nilai rapor semester 1-5
+                                dan sertifikat lomba.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <span
+                                class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full inline-block mb-2">Afirmasi
+                                (20%)</span>
+                            <h4 class="font-bold text-slate-900 text-xs mb-1">Jalur Keluarga Prasejahtera</h4>
+                            <p class="text-[11px] text-slate-500">Kuota 20% untuk pemegang KIP/PKH dan perpindahan tugas
+                                orang tua.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- MODAL TAMBAH SISWA -->
+    <div id="modalTambah"
+        class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden border border-slate-200">
+            <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+                <h3 class="font-black text-slate-900 text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-user-plus text-indigo-600"></i>
+                    <span>Formulir Pendaftaran Siswa Baru</span>
+                </h3>
+                <button onclick="tutupModalTambah()"
+                    class="text-slate-400 hover:text-slate-600 text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Nama Lengkap Calon Siswa</label>
+                    <input type="text" id="inputNama" placeholder="Contoh: AHMAD FAUZAN"
+                        class="w-full uppercase bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/40">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">NISN</label>
+                        <input type="text" id="inputNisn" placeholder="0081234567"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/40">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Jalur Pendaftaran</label>
+                        <select id="inputJalur"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none">
+                            <option value="Zonasi">Jalur Zonasi</option>
+                            <option value="Prestasi">Jalur Prestasi</option>
+                            <option value="Afirmasi">Jalur Afirmasi</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Asal Sekolah (SMP/MTs)</label>
+                    <input type="text" id="inputSekolah" placeholder="Contoh: SMPN 3 Cikarang"
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/40">
+                </div>
+            </div>
+            <div class="p-5 border-t border-slate-100 bg-slate-50 flex justify-end space-x-3">
+                <button onclick="tutupModalTambah()"
+                    class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-4 py-2 rounded-xl transition text-xs cursor-pointer">Batal</button>
+                <button onclick="simpanSiswaBaru()"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2 rounded-xl transition text-xs shadow-md cursor-pointer">Simpan
+                    Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT STATISTIK, CHART.JS, & AUTO UPPERCASE -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dataDefaultAwal = [
+                { nama: "MUHAMMAD RIZKY PRATAMA", nisn: "0079912305", sekolah: "SMP Negeri 1 Cikarang Utara", jalur: "Zonasi", tgl: "12 Mei 2026", status: "Terverifikasi", foto: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=faces" },
+                { nama: "SITI RAHMA AZZAHRA", nisn: "0087654321", sekolah: "SMPN 2 Tambun Selatan", jalur: "Prestasi", tgl: "12 Mei 2026", status: "Menunggu", foto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" },
+                { nama: "BUDI SANTOSO WIBOWO", nisn: "0089876542", sekolah: "MTsN 1 Bekasi", jalur: "Afirmasi", tgl: "13 Mei 2026", status: "Ditolak", foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" }
+            ];
+
+            let semuaSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb'));
+            if (!semuaSiswa) {
+                semuaSiswa = dataDefaultAwal;
+                localStorage.setItem('semua_siswa_ppdb', JSON.stringify(semuaSiswa));
+            }
+
+            // Hitung Statistik Angka
+            let total = semuaSiswa.length;
+            let verifikasi = semuaSiswa.filter(s => s.status === 'Terverifikasi').length;
+            let menunggu = semuaSiswa.filter(s => !s.status || s.status === 'Menunggu' || s.status === 'Menunggu Validasi' || s.status === 'Revisi').length;
+            let ditolak = semuaSiswa.filter(s => s.status === 'Ditolak').length;
+
+            document.getElementById('statTotal').innerText = total;
+            document.getElementById('statVerifikasi').innerText = verifikasi;
+            document.getElementById('statMenunggu').innerText = menunggu;
+            document.getElementById('statDitolak').innerText = ditolak;
+
+            // Hitung Data untuk Chart.js
+            let zonasiCount = semuaSiswa.filter(s => s.jalur === 'Zonasi').length;
+            let prestasiCount = semuaSiswa.filter(s => s.jalur === 'Prestasi').length;
+            let afirmasiCount = semuaSiswa.filter(s => s.jalur === 'Afirmasi' || s.jalur === 'Pindah Tugas').length;
+
+            // Render Chart.js
+            const ctx = document.getElementById('pendaftarChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jalur Zonasi', 'Jalur Prestasi', 'Jalur Afirmasi'],
+                    datasets: [{
+                        label: 'Jumlah Pendaftar',
+                        data: [zonasiCount, prestasiCount, afirmasiCount],
+                        backgroundColor: ['#4f46e5', '#7c3aed', '#f59e0b'],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+        });
+
+        function bukaModalTambah() {
+            document.getElementById('modalTambah').classList.remove('hidden');
+            document.getElementById('modalTambah').classList.add('flex');
+        }
+
+        function tutupModalTambah() {
+            document.getElementById('modalTambah').classList.remove('flex');
+            document.getElementById('modalTambah').classList.add('hidden');
+        }
+
+        function simpanSiswaBaru() {
+            const nama = document.getElementById('inputNama').value.trim().toUpperCase();
+            const nisn = document.getElementById('inputNisn').value.trim();
+            const sekolah = document.getElementById('inputSekolah').value.trim();
+            const jalur = document.getElementById('inputJalur').value;
+
+            if (!nama || !nisn || !sekolah) {
+                alert("Mohon lengkapi seluruh data formulir siswa!");
+                return;
+            }
+
+            let semuaSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb') || '[]');
+            semuaSiswa.push({
+                id: "s_" + Date.now(),
+                nama: nama,
+                nisn: nisn,
+                sekolah: sekolah,
+                jalur: jalur,
+                tgl: "17 Sep 2026",
+                status: "Menunggu",
+                foto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
+            });
+
+            localStorage.setItem('semua_siswa_ppdb', JSON.stringify(semuaSiswa));
+
+            alert("Data calon siswa baru berhasil ditambahkan!");
+            tutupModalTambah();
+            window.location.href = "data-siswa.html";
+        }
+    </script>
+</body>
+
+</html>

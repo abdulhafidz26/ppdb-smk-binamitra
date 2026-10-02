@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Detail Siswa - PPDB Online SMK Binamitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-[#f8fafc] font-sans text-slate-800">
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="w-64 bg-[#0B132B] text-slate-300 flex flex-col justify-between border-r border-slate-800 select-none flex-shrink-0">
+            <div>
+                <div class="p-4 flex items-center space-x-3 border-b border-slate-800/80">
+                    <div
+                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 shadow-md overflow-hidden flex-shrink-0">
+                        <img src="logo.png" alt="Logo SMK Binamitra" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-white text-sm tracking-wide">SMK BINAMITRA</h2>
+                        <p class="text-[10px] text-slate-400">Portal PPDB Online</p>
+                    </div>
+                </div>
+
+                <div class="p-4 grid grid-cols-2 gap-2 border-b border-slate-800/80 bg-slate-900/50">
+                    <div class="bg-emerald-950/60 border border-emerald-800/50 rounded-lg p-2 text-center">
+                        <span class="block text-[9px] text-emerald-400 font-semibold uppercase">TA 2026/2027</span>
+                    </div>
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-lg p-2 text-center">
+                        <span class="block text-[9px] text-slate-300 font-semibold uppercase">ID: SMKBN01</span>
+                    </div>
+                </div>
+
+                <nav class="p-3 space-y-1 text-sm">
+                    <a href="index.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="data-siswa.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/20">
+                        <i class="fa-solid fa-users w-4 text-center"></i>
+                        <span>Data Calon Siswa</span>
+                    </a>
+                    <a href="jurusan.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-graduation-cap w-4 text-center"></i>
+                        <span>Data Jurusan & Kuota</span>
+                    </a>
+                    <a href="laporan.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-file-lines w-4 text-center"></i>
+                        <span>Laporan Rekapitulasi</span>
+                    </a>
+                    <a href="pengumuman.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-bullhorn w-4 text-center"></i>
+                        <span>Pengumuman</span>
+                    </a>
+                    <a href="pengaturan.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-gear w-4 text-center"></i>
+                        <span>Pengaturan Akun</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="p-4 border-t border-slate-800/80 bg-slate-900/40 text-xs">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="text-slate-400 font-medium">SERVER PPDB</span>
+                    <span class="bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded">ONLINE</span>
+                </div>
+                <p class="text-[10px] text-slate-500">Aktif & Terhubung / Terbuka</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            <header
+                class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-8 sticky top-0 z-10 shadow-sm">
+                <div class="flex items-center space-x-3 text-xs font-semibold text-slate-600">
+                    <a href="data-siswa.html" class="text-slate-400 hover:text-slate-600 transition"><i
+                            class="fa-solid fa-arrow-left mr-1"></i> Kembali ke Data Siswa</a>
+                    <span class="text-slate-300">/</span>
+                    <span class="text-indigo-600 font-bold">Verifikasi Berkas Siswa</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div id="statusBadgeContainer"
+                        class="bg-amber-50 text-amber-700 border border-amber-200 text-xs font-bold px-3 py-1 rounded-xl flex items-center space-x-1.5">
+                        <span id="statusDot" class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                        <span id="statusText">Status: Menunggu Validasi</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="p-8 space-y-6">
+                <!-- PROFIL SINGKAT BANNER -->
+                <div
+                    class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-black text-2xl shadow-inner">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <h1 id="namaSiswa" class="text-xl font-black text-slate-900 tracking-tight">Memuat Nama...
+                            </h1>
+                            <p class="text-xs text-slate-500 mt-0.5">NISN: <span id="nisnSiswa"
+                                    class="font-bold text-slate-700">00000000</span> | No. Reg: <span id="regSiswa"
+                                    class="font-bold text-indigo-600">PPDB-000</span></p>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <span id="badgeJalur"
+                                    class="bg-blue-50 text-blue-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-blue-200">Jalur
+                                    Zonasi</span>
+                                <span id="badgeJurusan"
+                                    class="bg-indigo-50 text-indigo-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-indigo-200">TKJ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AKSI VALIDASI BERKAS -->
+                    <div class="flex items-center space-x-2">
+                        <button onclick="prosesVerifikasi('Terverifikasi')"
+                            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center space-x-1.5 cursor-pointer">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Setujui</span>
+                        </button>
+                        <button onclick="prosesVerifikasi('Revisi')"
+                            class="bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center space-x-1.5 cursor-pointer">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>Revisi</span>
+                        </button>
+                        <button onclick="prosesVerifikasi('Ditolak')"
+                            class="bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center space-x-1.5 cursor-pointer">
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>Tolak</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DETAIL INFORMASI & BERKAS -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- BIODATA -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm space-y-4 md:col-span-1">
+                        <h3
+                            class="font-bold text-slate-900 text-sm border-b border-slate-100 pb-3 flex items-center space-x-2">
+                            <i class="fa-solid fa-address-card text-indigo-600"></i>
+                            <span>Biodata Pendaftar</span>
+                        </h3>
+                        <div class="space-y-3 text-xs">
+                            <div>
+                                <span class="text-slate-400 block text-[10px] uppercase font-bold">Nama Lengkap</span>
+                                <span id="bioNama" class="font-bold text-slate-800 text-sm">-</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] uppercase font-bold">Nomor NISN</span>
+                                <span id="bioNisn" class="font-bold text-slate-800">-</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] uppercase font-bold">Pilihan
+                                    Jurusan</span>
+                                <span id="bioJurusan" class="font-bold text-indigo-600">-</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] uppercase font-bold">Jalur
+                                    Pendaftaran</span>
+                                <span id="bioJalur" class="font-bold text-slate-800">-</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] uppercase font-bold">Asal Sekolah
+                                    (SMP/MTs)</span>
+                                <span id="bioSekolah" class="font-bold text-slate-800">-</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400 block text-[10px] uppercase font-bold">Tanggal
+                                    Pendaftaran</span>
+                                <span id="tglSiswa" class="font-bold text-slate-800">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW BERKAS UPLOAD -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm space-y-4 md:col-span-2">
+                        <h3
+                            class="font-bold text-slate-900 text-sm border-b border-slate-100 pb-3 flex items-center space-x-2">
+                            <i class="fa-solid fa-file-pdf text-indigo-600"></i>
+                            <span>Dokumen Persyaratan Calon Siswa</span>
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                            <div
+                                class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center font-bold">
+                                        PDF</div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Ijazah / Surat Kelulusan</h4>
+                                        <p class="text-[10px] text-slate-400">Terverifikasi sistem</p>
+                                    </div>
+                                </div>
+                                <span class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
+                            </div>
+                            <div
+                                class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+                                        IMG</div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Kartu Keluarga (KK)</h4>
+                                        <p class="text-[10px] text-slate-400">Format JPG / PNG</p>
+                                    </div>
+                                </div>
+                                <span class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
+                            </div>
+                            <div
+                                class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                                        PDF</div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Rapor Semester 1-5</h4>
+                                        <p class="text-[10px] text-slate-400">Dokumen lengkap</p>
+                                    </div>
+                                </div>
+                                <span class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
+                            </div>
+                            <div
+                                class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center font-bold">
+                                        IMG</div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">Akta Kelahiran</h4>
+                                        <p class="text-[10px] text-slate-400">Scan asli</p>
+                                    </div>
+                                </div>
+                                <span class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LENGKAP -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const siswaId = urlParams.get('id');
+
+        let dataSiswaList = JSON.parse(localStorage.getItem('semua_siswa_ppdb') || '[]');
+
+        // PENCARIAN ID FLEKSIBEL
+        let siswaIndex = dataSiswaList.findIndex((s, idx) => {
+            let currentId = s.id || ('s' + (idx + 1));
+            return currentId === siswaId || idx.toString() === siswaId;
+        });
+
+        if (siswaIndex === -1 && siswaId) {
+            siswaIndex = dataSiswaList.findIndex(s => s.reg === siswaId);
+        }
+
+        if (siswaIndex !== -1) {
+            let s = dataSiswaList[siswaIndex];
+
+            // Render ke Banner Atas
+            document.getElementById('namaSiswa').innerText = s.nama;
+            document.getElementById('nisnSiswa').innerText = s.nisn;
+            document.getElementById('regSiswa').innerText = s.reg || 'PPDB-2026-00' + (siswaIndex + 1);
+            document.getElementById('sekolahSiswa').innerText = s.sekolah || 'SMP Asal';
+            document.getElementById('tglSiswa').innerText = s.tgl || 'Hari Ini';
+            document.getElementById('badgeJalur').innerText = "Jalur " + (s.jalur || 'Zonasi');
+            document.getElementById('badgeJurusan').innerText = s.jurusan || 'TKJ';
+
+            // Render ke Kotak Biodata Bawah
+            document.getElementById('bioNama').innerText = s.nama;
+            document.getElementById('bioNisn').innerText = s.nisn;
+            document.getElementById('bioJurusan').innerText = s.jurusan || 'Teknik Komputer dan Jaringan';
+            document.getElementById('bioJalur').innerText = s.jalur || 'Zonasi';
+            document.getElementById('bioSekolah').innerText = s.sekolah || 'SMP Asal';
+
+            updateStatusBadge(s.status);
+        } else {
+            alert("Data siswa tidak ditemukan!");
+            window.location.href = "data-siswa.html";
+        }
+
+        function updateStatusBadge(status) {
+            const container = document.getElementById('statusBadgeContainer');
+            const dot = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+
+            let currentStatus = status || 'Menunggu Validasi';
+
+            if (currentStatus === 'Terverifikasi') {
+                container.className = "bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold px-3 py-1 rounded-xl flex items-center space-x-1.5";
+                dot.className = "w-2 h-2 rounded-full bg-emerald-500";
+                text.innerText = "Status: Terverifikasi";
+            } else if (currentStatus === 'Ditolak') {
+                container.className = "bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold px-3 py-1 rounded-xl flex items-center space-x-1.5";
+                dot.className = "w-2 h-2 rounded-full bg-rose-500";
+                text.innerText = "Status: Ditolak";
+            } else if (currentStatus === 'Revisi') {
+                container.className = "bg-orange-50 text-orange-700 border border-orange-200 text-xs font-bold px-3 py-1 rounded-xl flex items-center space-x-1.5";
+                dot.className = "w-2 h-2 rounded-full bg-orange-500";
+                text.innerText = "Status: Revisi";
+            } else {
+                container.className = "bg-amber-50 text-amber-700 border border-amber-200 text-xs font-bold px-3 py-1 rounded-xl flex items-center space-x-1.5";
+                dot.className = "w-2 h-2 rounded-full bg-amber-500 animate-ping";
+                text.innerText = "Status: Menunggu Validasi";
+            }
+        }
+
+        // FUNGSI MODAL DENGAN PENGAMAN DOUBLE-TRIGGER
+        function prosesVerifikasi(statusBaru) {
+            if (document.getElementById('customModalOverlay')) return;
+            document.activeElement.blur();
+
+            const modalOverlay = document.createElement('div');
+            modalOverlay.id = 'customModalOverlay';
+            modalOverlay.className = "fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300";
+
+            let warnaTombol = "bg-emerald-600 hover:bg-emerald-700 shadow-emerald-600/20";
+            let teksJudul = "Konfirmasi Perubahan Status";
+            let teksPesan = `Apakah Anda yakin ingin mengubah status siswa ini menjadi <span class="font-bold text-slate-900">${statusBaru}</span>?`;
+
+            if (statusBaru === 'Ditolak') warnaTombol = "bg-rose-600 hover:bg-rose-700 shadow-rose-600/20";
+            if (statusBaru === 'Revisi') warnaTombol = "bg-orange-500 hover:bg-orange-600 shadow-orange-500/20";
+
+            modalOverlay.innerHTML = `
+                <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl border border-slate-100 transform transition-all scale-100 space-y-4 text-center">
+                    <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center mx-auto text-lg">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-slate-900 mb-1">${teksJudul}</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">${teksPesan}</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-2">
+                        <button id="modalBatal" type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl text-xs transition cursor-pointer">
+                            Batal
+                        </button>
+                        <button id="modalYa" type="button" class="${warnaTombol} text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition cursor-pointer">
+                            Ya, Lanjutkan
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modalOverlay);
+
+            document.getElementById('modalBatal').addEventListener('click', () => {
+                modalOverlay.remove();
+            });
+
+            document.getElementById('modalYa').addEventListener('click', () => {
+                dataSiswaList[siswaIndex].status = statusBaru;
+                localStorage.setItem('semua_siswa_ppdb', JSON.stringify(dataSiswaList));
+
+                updateStatusBadge(statusBaru);
+                modalOverlay.remove();
+                tampilkanNotifikasi(`Status berhasil diubah menjadi ${statusBaru}!`);
+            });
+        }
+
+        function tampilkanNotifikasi(pesan) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold z-50 flex items-center space-x-2 animate-bounce";
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> <span>${pesan}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+    </script>
+</body>
+
+</html>

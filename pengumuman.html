@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman - PPDB Online SMK Binamitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-[#f4f7fe] font-sans text-slate-800">
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- SIDEBAR -->
+        <aside
+            class="w-64 bg-[#0B132B] text-slate-300 flex flex-col justify-between border-r border-slate-800 select-none flex-shrink-0">
+            <div>
+                <div class="p-4 flex items-center space-x-3 border-b border-slate-800/80">
+                    <div
+                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 shadow-md overflow-hidden flex-shrink-0">
+                        <img src="logo.png" alt="Logo SMK Binamitra" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-white text-sm tracking-wide">SMK BINAMITRA</h2>
+                        <p class="text-[10px] text-slate-400">Portal PPDB Online</p>
+                    </div>
+                </div>
+
+                <div class="p-4 grid grid-cols-2 gap-2 border-b border-slate-800/80 bg-slate-900/50">
+                    <div class="bg-emerald-950/60 border border-emerald-800/50 rounded-lg p-2 text-center">
+                        <span class="block text-[9px] text-emerald-400 font-semibold uppercase">TA 2026/2027</span>
+                    </div>
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-lg p-2 text-center">
+                        <span class="block text-[9px] text-slate-300 font-semibold uppercase">ID: SMKBN01</span>
+                    </div>
+                </div>
+
+                <nav class="p-3 space-y-1 text-sm">
+                    <a href="index.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-chart-pie w-4 text-center"></i><span>Dashboard</span>
+                    </a>
+                    <a href="data-siswa.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-users w-4 text-center"></i><span>Data Calon Siswa</span>
+                    </a>
+                    <a href="jurusan.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-graduation-cap w-4 text-center"></i><span>Data Jurusan & Kuota</span>
+                    </a>
+                    <a href="laporan.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-file-lines w-4 text-center"></i><span>Laporan Rekapitulasi</span>
+                    </a>
+                    <a href="pengumuman.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/20">
+                        <i class="fa-solid fa-bullhorn w-4 text-center"></i><span>Pengumuman</span>
+                    </a>
+                    <a href="pengaturan.html"
+                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                        <i class="fa-solid fa-gear w-4 text-center"></i><span>Pengaturan Akun</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="p-4 border-t border-slate-800/80 bg-slate-900/40 text-xs">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="text-slate-400 font-medium">SERVER PPDB</span>
+                    <span class="bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded">ONLINE</span>
+                </div>
+                <p class="text-[10px] text-slate-500">Aktif & Terhubung / Terbuka</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            <header
+                class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-8 sticky top-0 z-10 shadow-sm">
+                <div class="flex items-center space-x-3 text-xs font-semibold text-slate-600">
+                    <span class="text-slate-400">PPDB Online</span>
+                    <span class="text-slate-300">/</span>
+                    <span class="text-indigo-600 font-bold">Manajemen Pengumuman</span>
+                </div>
+                <div>
+                    <button onclick="bukaModalPengumuman()"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition flex items-center space-x-2">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Buat Pengumuman Baru</span>
+                    </button>
+                </div>
+            </header>
+
+            <main class="p-8 space-y-6">
+                <!-- BANNER -->
+                <div
+                    class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-blue-700 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span
+                            class="bg-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">Informasi
+                            Publik</span>
+                        <h1 class="text-2xl font-black">Pengumuman & Broadcast PPDB</h1>
+                        <p class="text-indigo-100 text-xs mt-1">Publikasikan informasi penting, jadwal seleksi, atau
+                            hasil kelulusan untuk dilihat oleh calon siswa.</p>
+                    </div>
+                </div>
+
+                <!-- DAFTAR PENGUMUMAN -->
+                <div id="daftarPengumuman" class="space-y-4">
+                    <!-- Render via JavaScript -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div id="modalPengumuman"
+        class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-lg shadow-2xl border border-slate-100 space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                <h3 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-bullhorn text-indigo-600"></i>
+                    <span>Buat Pengumuman Resmi</span>
+                </h3>
+                <button onclick="tutupModalPengumuman()" class="text-slate-400 hover:text-slate-600 text-sm"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="formPengumuman" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Judul Pengumuman</label>
+                    <input type="text" id="inputJudul" required
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                        placeholder="Contoh: Jadwal Tes Wawancara Gelombang 1">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Kategori / Sifat</label>
+                    <select id="inputKategori"
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 focus:outline-none">
+                        <option value="Informasi Umum">Informasi Umum</option>
+                        <option value="Penting / Urgen">Penting / Urgen</option>
+                        <option value="Hasil Seleksi">Hasil Seleksi</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Isi Pengumuman</label>
+                    <textarea id="inputIsi" rows="4" required
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                        placeholder="Tulis rincian pengumuman di sini..."></textarea>
+                </div>
+                <div class="pt-2 flex justify-end space-x-2">
+                    <button type="button" onclick="tutupModalPengumuman()"
+                        class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2.5 rounded-xl transition">Batal</button>
+                    <button type="submit"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-md transition">Publikasikan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const defaultPengumuman = [
+            { id: "p1", judul: "Pembukaan Pendaftaran PPDB Gelombang 1", kategori: "Penting / Urgen", isi: "Pendaftaran peserta didik baru SMK Binamitra Tahun Ajaran 2026/2027 resmi dibuka melalui jalur Zonasi, Prestasi, dan Afirmasi.", tgl: "12 Mei 2026" },
+            { id: "p2", judul: "Ketentuan Berkas Persyaratan Ulang", kategori: "Informasi Umum", isi: "Seluruh calon siswa yang sudah mendaftar diimbau untuk melampirkan scan rapor asli dan kartu keluarga pada menu verifikasi.", tgl: "13 Mei 2026" }
+        ];
+
+        if (!localStorage.getItem('list_pengumuman_ppdb')) {
+            localStorage.setItem('list_pengumuman_ppdb', JSON.stringify(defaultPengumuman));
+        }
+
+        function renderPengumuman() {
+            let list = JSON.parse(localStorage.getItem('list_pengumuman_ppdb') || '[]');
+            const container = document.getElementById('daftarPengumuman');
+            container.innerHTML = '';
+
+            list.forEach(p => {
+                let badgeColor = "bg-blue-50 text-blue-700 border-blue-200";
+                if (p.kategori === 'Penting / Urgen') badgeColor = "bg-rose-50 text-rose-700 border-rose-200";
+                if (p.kategori === 'Hasil Seleksi') badgeColor = "bg-emerald-50 text-emerald-700 border-emerald-200";
+
+                let card = document.createElement('div');
+                card.className = "bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm space-y-3";
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="${badgeColor} font-bold text-[10px] px-3 py-1 rounded-full border inline-block mb-2">${p.kategori}</span>
+                            <h3 class="font-black text-slate-900 text-base">${p.judul}</h3>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-[11px] text-slate-400"><i class="fa-regular fa-calendar mr-1"></i>${p.tgl}</span>
+                            <button onclick="hapusPengumuman('${p.id}')" class="text-rose-400 hover:text-rose-600 p-2 text-xs" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">${p.isi}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", renderPengumuman);
+
+        function bukaModalPengumuman() {
+            document.getElementById('modalPengumuman').classList.remove('hidden');
+            document.getElementById('modalPengumuman').classList.add('flex');
+        }
+        function tutupModalPengumuman() {
+            document.getElementById('modalPengumuman').classList.remove('flex');
+            document.getElementById('modalPengumuman').classList.add('hidden');
+        }
+
+        document.getElementById('formPengumuman').addEventListener('submit', function (e) {
+            e.preventDefault();
+            let list = JSON.parse(localStorage.getItem('list_pengumuman_ppdb') || '[]');
+            let baru = {
+                id: "p_" + Date.now(),
+                judul: document.getElementById('inputJudul').value,
+                kategori: document.getElementById('inputKategori').value,
+                isi: document.getElementById('inputIsi').value,
+                tgl: "Hari Ini"
+            };
+            list.unshift(baru);
+            localStorage.setItem('list_pengumuman_ppdb', JSON.stringify(list));
+            tutupModalPengumuman();
+            document.getElementById('formPengumuman').reset();
+            renderPengumuman();
+            alert("Pengumuman berhasil dipublikasikan!");
+        });
+
+        function hapusPengumuman(id) {
+            if (confirm("Yakin ingin menghapus pengumuman ini?")) {
+                let list = JSON.parse(localStorage.getItem('list_pengumuman_ppdb') || '[]');
+                list = list.filter(p => p.id !== id);
+                localStorage.setItem('list_pengumuman_ppdb', JSON.stringify(list));
+                renderPengumuman();
+            }
+        }
+    </script>
+</body>
+
+</html>
