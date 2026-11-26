@@ -7,6 +7,13 @@
     <title>Verifikasi Detail Siswa - PPDB Online SMK Binamitra</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
 
 <body class="bg-[#f8fafc] font-sans text-slate-800">
@@ -19,7 +26,8 @@
                 <div class="p-4 flex items-center space-x-3 border-b border-slate-800/80">
                     <div
                         class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 shadow-md overflow-hidden flex-shrink-0">
-                        <img src="logo.png" alt="Logo SMK Binamitra" class="w-full h-full object-contain">
+                        <img src="logo.png" alt="Logo SMK Binamitra" class="w-full h-full object-contain"
+                            onerror="this.style.display='none'">
                     </div>
                     <div>
                         <h2 class="font-bold text-white text-sm tracking-wide">SMK BINAMITRA</h2>
@@ -130,12 +138,12 @@
                             <i class="fa-solid fa-check"></i>
                             <span>Setujui</span>
                         </button>
-                        <button onclick="prosesVerifikasi('Revisi')"
+                        <button onclick="prosesVerifikasi('Perlu Perbaikan')"
                             class="bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center space-x-1.5 cursor-pointer">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                             <span>Revisi</span>
                         </button>
-                        <button onclick="prosesVerifikasi('Ditolak')"
+                        <button onclick="prosesVerifikasi('Tidak Diterima')"
                             class="bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition flex items-center space-x-1.5 cursor-pointer">
                             <i class="fa-solid fa-xmark"></i>
                             <span>Tolak</span>
@@ -184,14 +192,16 @@
                         </div>
                     </div>
 
-                    <!-- PREVIEW BERKAS UPLOAD -->
+                    <!-- PREVIEW BERKAS UPLOAD SINKRON DENGAN USER -->
                     <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm space-y-4 md:col-span-2">
                         <h3
                             class="font-bold text-slate-900 text-sm border-b border-slate-100 pb-3 flex items-center space-x-2">
                             <i class="fa-solid fa-file-pdf text-indigo-600"></i>
-                            <span>Dokumen Persyaratan Calon Siswa</span>
+                            <span>Dokumen Persyaratan Calon Siswa (Sinkron Mandiri)</span>
                         </h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+
+                            <!-- Ijazah / SKL -->
                             <div
                                 class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -199,12 +209,15 @@
                                         class="w-10 h-10 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center font-bold">
                                         PDF</div>
                                     <div>
-                                        <h4 class="font-bold text-slate-800">Ijazah / Surat Kelulusan</h4>
-                                        <p class="text-[10px] text-slate-400">Terverifikasi sistem</p>
+                                        <h4 class="font-bold text-slate-800">Ijazah / SKL / Rapor</h4>
+                                        <p id="docIjazahName" class="text-[10px] text-slate-400">Belum diunggah</p>
                                     </div>
                                 </div>
-                                <span class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
+                                <span onclick="bukaDokumen('ijazah')"
+                                    class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
                             </div>
+
+                            <!-- Kartu Keluarga -->
                             <div
                                 class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -213,24 +226,14 @@
                                         IMG</div>
                                     <div>
                                         <h4 class="font-bold text-slate-800">Kartu Keluarga (KK)</h4>
-                                        <p class="text-[10px] text-slate-400">Format JPG / PNG</p>
+                                        <p id="docKkName" class="text-[10px] text-slate-400">Belum diunggah</p>
                                     </div>
                                 </div>
-                                <span class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
+                                <span onclick="bukaDokumen('kk')"
+                                    class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
                             </div>
-                            <div
-                                class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-between">
-                                <div class="flex items-center space-x-3">
-                                    <div
-                                        class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-                                        PDF</div>
-                                    <div>
-                                        <h4 class="font-bold text-slate-800">Rapor Semester 1-5</h4>
-                                        <p class="text-[10px] text-slate-400">Dokumen lengkap</p>
-                                    </div>
-                                </div>
-                                <span class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
-                            </div>
+
+                            <!-- Akta Kelahiran -->
                             <div
                                 class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -239,11 +242,13 @@
                                         IMG</div>
                                     <div>
                                         <h4 class="font-bold text-slate-800">Akta Kelahiran</h4>
-                                        <p class="text-[10px] text-slate-400">Scan asli</p>
+                                        <p id="docAktaName" class="text-[10px] text-slate-400">Belum diunggah</p>
                                     </div>
                                 </div>
-                                <span class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
+                                <span onclick="bukaDokumen('akta')"
+                                    class="text-indigo-600 font-bold hover:underline cursor-pointer">Lihat</span>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -251,46 +256,141 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT LENGKAP -->
+    <!-- JAVASCRIPT SINKRONISASI DATA & MODAL PRATINJAU GAMBAR ASLI -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const siswaId = urlParams.get('id');
 
         let dataSiswaList = JSON.parse(localStorage.getItem('semua_siswa_ppdb') || '[]');
 
-        // PENCARIAN ID FLEKSIBEL
         let siswaIndex = dataSiswaList.findIndex((s, idx) => {
-            let currentId = s.id || ('s' + (idx + 1));
-            return currentId === siswaId || idx.toString() === siswaId;
+            return (s.id && s.id.toString() === siswaId) || idx.toString() === siswaId;
         });
 
-        if (siswaIndex === -1 && siswaId) {
-            siswaIndex = dataSiswaList.findIndex(s => s.reg === siswaId);
-        }
+        let currentSiswa = null;
 
         if (siswaIndex !== -1) {
-            let s = dataSiswaList[siswaIndex];
+            currentSiswa = dataSiswaList[siswaIndex];
 
-            // Render ke Banner Atas
-            document.getElementById('namaSiswa').innerText = s.nama;
-            document.getElementById('nisnSiswa').innerText = s.nisn;
-            document.getElementById('regSiswa').innerText = s.reg || 'PPDB-2026-00' + (siswaIndex + 1);
-            document.getElementById('sekolahSiswa').innerText = s.sekolah || 'SMP Asal';
-            document.getElementById('tglSiswa').innerText = s.tgl || 'Hari Ini';
-            document.getElementById('badgeJalur').innerText = "Jalur " + (s.jalur || 'Zonasi');
-            document.getElementById('badgeJurusan').innerText = s.jurusan || 'TKJ';
+            // Render Banner Atas
+            document.getElementById('namaSiswa').innerText = currentSiswa.nama || '-';
+            document.getElementById('nisnSiswa').innerText = currentSiswa.nisn || '-';
+            document.getElementById('regSiswa').innerText = currentSiswa.id || ('PPDB-2026-00' + (siswaIndex + 1));
+            document.getElementById('tglSiswa').innerText = currentSiswa.tgl || '17 Okt 2026';
+            document.getElementById('badgeJalur').innerText = "Jalur " + (currentSiswa.jalur || 'Zonasi');
 
-            // Render ke Kotak Biodata Bawah
-            document.getElementById('bioNama').innerText = s.nama;
-            document.getElementById('bioNisn').innerText = s.nisn;
-            document.getElementById('bioJurusan').innerText = s.jurusan || 'Teknik Komputer dan Jaringan';
-            document.getElementById('bioJalur').innerText = s.jalur || 'Zonasi';
-            document.getElementById('bioSekolah').innerText = s.sekolah || 'SMP Asal';
+            let jurusanTampil = currentSiswa.jurusan || 'Teknik Komputer dan Jaringan (TKJ)';
+            let singkatanBadge = "TKJ";
+            if (jurusanTampil.includes("Akuntansi") || jurusanTampil.includes("AK")) singkatanBadge = "AK";
+            else if (jurusanTampil.includes("Sepeda Motor") || jurusanTampil.includes("TSM")) singkatanBadge = "TSM";
+            else if (jurusanTampil.includes("Kendaraan Ringan") || jurusanTampil.includes("TKR")) singkatanBadge = "TKR";
 
-            updateStatusBadge(s.status);
+            document.getElementById('badgeJurusan').innerText = singkatanBadge;
+
+            // Render Biodata
+            document.getElementById('bioNama').innerText = currentSiswa.nama || '-';
+            document.getElementById('bioNisn').innerText = currentSiswa.nisn || '-';
+            document.getElementById('bioJurusan').innerText = jurusanTampil;
+            document.getElementById('bioJalur').innerText = currentSiswa.jalur || '-';
+            document.getElementById('bioSekolah').innerText = currentSiswa.sekolah || '-';
+
+            // Render Nama Dokumen jika ada dari user
+            if (currentSiswa.dokumen) {
+                if (currentSiswa.dokumen.ijazahName) document.getElementById('docIjazahName').innerText = currentSiswa.dokumen.ijazahName;
+                if (currentSiswa.dokumen.kkName) document.getElementById('docKkName').innerText = currentSiswa.dokumen.kkName;
+                if (currentSiswa.dokumen.aktaName) document.getElementById('docAktaName').innerText = currentSiswa.dokumen.aktaName;
+            }
+
+            updateStatusBadge(currentSiswa.status);
         } else {
-            alert("Data siswa tidak ditemukan!");
+            alert("Data siswa tidak ditemukan di dalam database!");
             window.location.href = "data-siswa.html";
+        }
+
+        // FUNGSI MODAL PRATINJAU DOKUMEN BERBASIS BASE64
+        function bukaDokumen(jenis) {
+            if (!currentSiswa || !currentSiswa.dokumen) {
+                alert("Tidak ada dokumen yang diunggah oleh siswa ini.");
+                return;
+            }
+
+            let fileSrc = "";
+            let filename = "";
+            let judulDoc = "";
+
+            if (jenis === 'ijazah') {
+                fileSrc = currentSiswa.dokumen.ijazah;
+                filename = currentSiswa.dokumen.ijazahName || "Ijazah / SKL";
+                judulDoc = "Ijazah / SKL / Rapor";
+            }
+            if (jenis === 'kk') {
+                fileSrc = currentSiswa.dokumen.kk;
+                filename = currentSiswa.dokumen.kkName || "Kartu Keluarga";
+                judulDoc = "Kartu Keluarga (KK)";
+            }
+            if (jenis === 'akta') {
+                fileSrc = currentSiswa.dokumen.akta;
+                filename = currentSiswa.dokumen.aktaName || "Akta Kelahiran";
+                judulDoc = "Akta Kelahiran";
+            }
+
+            if (document.getElementById('modalDokumenOverlay')) return;
+
+            let isImage = fileSrc && fileSrc.startsWith('data:image');
+
+            const modalOverlay = document.createElement('div');
+            modalOverlay.id = 'modalDokumenOverlay';
+            modalOverlay.className = "fixed inset-0 bg-slate-900/70 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300";
+
+            modalOverlay.innerHTML = `
+                <div class="bg-white rounded-3xl p-6 w-full max-w-xl shadow-2xl border border-slate-100 transform transition-all space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-base">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-black text-slate-900">Pratinjau Dokumen Asli</h3>
+                                <p class="text-[11px] text-slate-400">${judulDoc}</p>
+                            </div>
+                        </div>
+                        <button id="tutupModalDoc" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition cursor-pointer">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center space-y-3">
+                        ${isImage ? `
+                            <div class="w-full h-72 bg-slate-900 rounded-xl overflow-hidden flex items-center justify-center border border-slate-300 relative">
+                                <img src="${fileSrc}" alt="Dokumen" class="w-full h-full object-contain">
+                            </div>
+                        ` : `
+                            <div class="p-6 bg-indigo-50 text-indigo-700 rounded-xl font-bold text-xs">
+                                <i class="fa-solid fa-file-pdf text-3xl mb-2 block"></i>
+                                Berkas Dokumen (${filename})
+                            </div>
+                        `}
+                        <div>
+                            <p class="text-xs font-bold text-slate-800 break-all">${filename}</p>
+                            <p class="text-[11px] text-slate-500 mt-1">Dokumen berhasil dimuat dari data pendaftar online.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-2 pt-2">
+                        <button id="btnTutupDoc" type="button" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer shadow-lg">
+                            Tutup Pratinjau
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modalOverlay);
+
+            document.getElementById('tutupModalDoc').addEventListener('click', () => modalOverlay.remove());
+            document.getElementById('btnTutupDoc').addEventListener('click', () => modalOverlay.remove());
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) modalOverlay.remove();
+            });
         }
 
         function updateStatusBadge(status) {
@@ -298,28 +398,27 @@
             const dot = document.getElementById('statusDot');
             const text = document.getElementById('statusText');
 
-            let currentStatus = status || 'Menunggu Validasi';
+            let currentStatus = status || 'Menunggu Verifikasi';
 
-            if (currentStatus === 'Terverifikasi') {
+            if (currentStatus === 'Terverifikasi' || currentStatus === 'Diterima') {
                 container.className = "bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold px-3 py-1 rounded-xl flex items-center space-x-1.5";
                 dot.className = "w-2 h-2 rounded-full bg-emerald-500";
-                text.innerText = "Status: Terverifikasi";
-            } else if (currentStatus === 'Ditolak') {
+                text.innerText = "Status: " + currentStatus;
+            } else if (currentStatus === 'Tidak Diterima' || currentStatus === 'Ditolak') {
                 container.className = "bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold px-3 py-1 rounded-xl flex items-center space-x-1.5";
                 dot.className = "w-2 h-2 rounded-full bg-rose-500";
-                text.innerText = "Status: Ditolak";
-            } else if (currentStatus === 'Revisi') {
+                text.innerText = "Status: " + currentStatus;
+            } else if (currentStatus === 'Perlu Perbaikan' || currentStatus === 'Revisi') {
                 container.className = "bg-orange-50 text-orange-700 border border-orange-200 text-xs font-bold px-3 py-1 rounded-xl flex items-center space-x-1.5";
                 dot.className = "w-2 h-2 rounded-full bg-orange-500";
-                text.innerText = "Status: Revisi";
+                text.innerText = "Status: " + currentStatus;
             } else {
                 container.className = "bg-amber-50 text-amber-700 border border-amber-200 text-xs font-bold px-3 py-1 rounded-xl flex items-center space-x-1.5";
                 dot.className = "w-2 h-2 rounded-full bg-amber-500 animate-ping";
-                text.innerText = "Status: Menunggu Validasi";
+                text.innerText = "Status: Menunggu Verifikasi";
             }
         }
 
-        // FUNGSI MODAL DENGAN PENGAMAN DOUBLE-TRIGGER
         function prosesVerifikasi(statusBaru) {
             if (document.getElementById('customModalOverlay')) return;
             document.activeElement.blur();
@@ -332,8 +431,8 @@
             let teksJudul = "Konfirmasi Perubahan Status";
             let teksPesan = `Apakah Anda yakin ingin mengubah status siswa ini menjadi <span class="font-bold text-slate-900">${statusBaru}</span>?`;
 
-            if (statusBaru === 'Ditolak') warnaTombol = "bg-rose-600 hover:bg-rose-700 shadow-rose-600/20";
-            if (statusBaru === 'Revisi') warnaTombol = "bg-orange-500 hover:bg-orange-600 shadow-orange-500/20";
+            if (statusBaru === 'Tidak Diterima') warnaTombol = "bg-rose-600 hover:bg-rose-700 shadow-rose-600/20";
+            if (statusBaru === 'Perlu Perbaikan') warnaTombol = "bg-orange-500 hover:bg-orange-600 shadow-orange-500/20";
 
             modalOverlay.innerHTML = `
                 <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl border border-slate-100 transform transition-all scale-100 space-y-4 text-center">

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin - Portal PPDB SMK Binamitra</title>
+    <title>Login - Portal PPDB SMK Binamitra</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome untuk ikon -->
@@ -16,123 +16,155 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-
-        @keyframes pulseGlow {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.4;
-            }
-
-            50% {
-                transform: scale(1.1);
-                opacity: 0.7;
-            }
-        }
-
-        .glow-bg-1 {
-            animation: pulseGlow 8s infinite ease-in-out;
-        }
-
-        .glow-bg-2 {
-            animation: pulseGlow 10s infinite ease-in-out reverse;
-        }
     </style>
 </head>
 
-<body
-    class="bg-[#030712] text-slate-100 h-screen w-screen flex items-center justify-center overflow-hidden relative select-none">
+<body class="bg-[#030712] text-slate-100 h-screen w-screen flex items-center justify-center overflow-hidden relative"
+    style="background-image: linear-gradient(rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.85)), url('bg-smk.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
-    <!-- Background Animated Glow Orbs -->
-    <div
-        class="absolute -top-32 -left-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none glow-bg-1">
-    </div>
-    <div
-        class="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none glow-bg-2">
+    <!-- TOAST NOTIFICATION MODERN -->
+    <div id="toastNotif"
+        class="fixed top-6 right-6 z-50 transform translate-x-full opacity-0 transition-all duration-300 ease-out bg-slate-900/95 backdrop-blur-xl border border-slate-700/80 text-white px-5 py-4 rounded-2xl shadow-2xl flex items-center space-x-3">
+        <div id="toastIcon"
+            class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <h4 id="toastTitle" class="text-xs font-bold">Berhasil!</h4>
+            <p id="toastMsg" class="text-[11px] text-slate-400">Pesan notifikasi di sini...</p>
+        </div>
     </div>
 
     <!-- Login Card Container -->
     <div
-        class="relative z-10 w-full max-w-md mx-4 bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 p-8 rounded-3xl shadow-2xl shadow-indigo-950/50 transition-all duration-500">
+        class="relative z-10 w-full max-w-md mx-4 bg-slate-900/90 backdrop-blur-2xl border border-slate-800 p-8 rounded-3xl shadow-2xl shadow-indigo-950/80 space-y-6">
 
         <!-- Logo / Brand Header -->
-        <div class="flex flex-col items-center text-center mb-6">
+        <div class="flex flex-col items-center text-center">
             <div
-                class="w-20 h-20 bg-slate-950/80 border border-slate-700/60 rounded-full flex items-center justify-center shadow-xl shadow-indigo-950/50 mb-3 p-2 ring-4 ring-indigo-500/10 transform hover:scale-105 transition duration-300">
-                <img src="logo-removebg.png" alt="Logo SMK Binamitra"
-                    class="w-full h-full object-contain drop-shadow-md">
+                class="w-16 h-16 bg-slate-950/80 border border-slate-700/60 rounded-2xl flex items-center justify-center shadow-lg mb-3 p-2">
+                <img src="logo-removebg.png" alt="Logo SMK Binamitra" class="w-full h-full object-contain"
+                    onerror="this.style.display='none'">
             </div>
-            <h1 class="text-2xl font-black tracking-tight text-white">Selamat Datang! 👋</h1>
-            <p class="text-xs text-slate-400 mt-1">Portal Verifikator & Admin PPDB SMK Binamitra</p>
+            <h1 class="text-xl font-black tracking-tight text-white">Selamat Datang! 👋</h1>
+            <p id="subheadingText" class="text-xs text-slate-400 mt-1">Portal Verifikator & Admin PPDB SMK Binamitra</p>
         </div>
 
-        <!-- Form Login -->
-        <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
-            <!-- Input Username -->
+        <!-- TAB PEMILIH ROLE (ADMIN / SISWA) -->
+        <div class="grid grid-cols-2 bg-slate-950/80 p-1.5 rounded-2xl border border-slate-800 text-xs font-bold">
+            <button id="tabAdmin" onclick="pilihRole('admin')"
+                class="py-2.5 rounded-xl transition cursor-pointer bg-indigo-600 text-white shadow-md">
+                <i class="fa-solid fa-user-shield mr-1.5"></i> Admin
+            </button>
+            <button id="tabSiswa" onclick="pilihRole('siswa')"
+                class="py-2.5 rounded-xl transition cursor-pointer text-slate-400 hover:text-white">
+                <i class="fa-solid fa-user-graduate mr-1.5"></i> Calon Siswa
+            </button>
+        </div>
+
+        <!-- FORM LOGIN ADMIN -->
+        <form id="formAdmin" onsubmit="handleLoginAdmin(event)" class="space-y-4 text-xs">
             <div>
-                <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Username / ID
+                <label class="block font-bold text-slate-400 uppercase tracking-wider mb-1.5">Username / ID
                     Admin</label>
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500">
-                        <i class="fa-solid fa-user text-xs"></i>
+                        <i class="fa-solid fa-user"></i>
                     </span>
                     <input type="text" id="username" required placeholder="Cth: admin"
-                        class="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 text-white pl-10 pr-4 py-3 rounded-xl text-xs outline-none transition">
+                        class="w-full bg-slate-950/80 border border-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 text-white pl-10 pr-4 py-3 rounded-xl outline-none transition">
                 </div>
             </div>
 
-            <!-- Input Password -->
             <div>
                 <div class="flex justify-between items-center mb-1.5">
-                    <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Password</label>
+                    <label class="block font-bold text-slate-400 uppercase tracking-wider">Password</label>
                     <a href="javascript:void(0)" onclick="bukaModalReset()"
                         class="text-[10px] text-indigo-400 hover:underline">Lupa password?</a>
                 </div>
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500">
-                        <i class="fa-solid fa-lock text-xs"></i>
+                        <i class="fa-solid fa-lock"></i>
                     </span>
                     <input type="password" id="password" required placeholder="••••••••••••"
-                        class="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 text-white pl-10 pr-10 py-3 rounded-xl text-xs outline-none transition">
+                        class="w-full bg-slate-950/80 border border-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 text-white pl-10 pr-10 py-3 rounded-xl outline-none transition">
                     <button type="button" onclick="togglePassword()"
-                        class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300">
-                        <i id="eyeIcon" class="fa-solid fa-eye-slash text-xs"></i>
+                        class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300 cursor-pointer">
+                        <i id="eyeIcon" class="fa-solid fa-eye-slash"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Error Message Alert -->
             <div id="errorAlert"
-                class="hidden bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs px-3 py-2.5 rounded-xl flex items-center space-x-2">
+                class="hidden bg-rose-500/10 border border-rose-500/30 text-rose-400 px-3 py-2.5 rounded-xl flex items-center space-x-2">
                 <i class="fa-solid fa-circle-exclamation"></i>
                 <span id="errorText">Username atau password salah!</span>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" id="submitBtn"
-                class="w-full mt-2 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-indigo-600/30 transition transform active:scale-95 flex items-center justify-center space-x-2">
+                class="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-indigo-600/30 transition flex items-center justify-center space-x-2 cursor-pointer text-sm">
                 <span>Masuk Dashboard</span>
                 <i class="fa-solid fa-arrow-right-long"></i>
             </button>
+
+            <!-- Demo Account Box -->
+            <div class="mt-4 pt-4 border-t border-slate-800/80 text-center">
+                <div onclick="autoFillDemo()"
+                    class="inline-flex items-center space-x-2 bg-indigo-950/60 hover:bg-indigo-900/60 border border-indigo-800/60 px-3.5 py-2 rounded-xl text-[11px] text-indigo-300 cursor-pointer transition shadow-sm"
+                    title="Klik untuk isi otomatis">
+                    <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i>
+                    <span>Demo Akun: <strong class="text-white">admin</strong> / <strong
+                            class="text-white">smkbinamitra</strong> <span
+                            class="text-[10px] text-indigo-400 underline ml-1">(Klik Isi)</span></span>
+                </div>
+            </div>
         </form>
 
-        <!-- Demo Account Helper Box -->
-        <div class="mt-6 pt-4 border-t border-slate-800/80 text-center">
-            <div
-                class="inline-flex items-center space-x-2 bg-indigo-950/40 border border-indigo-800/40 px-3 py-1.5 rounded-lg text-[11px] text-indigo-300">
-                <i class="fa-solid fa-lightbulb text-amber-400"></i>
-                <span>Demo Akun: <strong class="text-white">admin</strong> / <strong
-                        class="text-white">smkbinamitra</strong></span>
+        <!-- FORM LOGIN / CEK STATUS SISWA -->
+        <form id="formSiswa" onsubmit="handleLoginSiswa(event)" class="space-y-4 text-xs hidden">
+            <div>
+                <label class="block font-bold text-slate-400 uppercase tracking-wider mb-1.5">NISN Calon Siswa</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500">
+                        <i class="fa-solid fa-id-card"></i>
+                    </span>
+                    <input type="text" id="nisnSiswa" required placeholder="Masukkan NISN Anda (Cth: 0087654321)"
+                        class="w-full bg-slate-950/80 border border-slate-800 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 text-white pl-10 pr-4 py-3 rounded-xl outline-none transition">
+                </div>
+                <p class="text-[11px] text-slate-400 mt-1.5">Masukkan NISN terdaftar untuk memantau status verifikasi
+                    berkas secara mandiri.</p>
             </div>
-        </div>
+
+            <button type="submit" id="submitSiswaBtn"
+                class="w-full mt-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition flex items-center justify-center space-x-2 cursor-pointer text-sm">
+                <span>Cek Status Pendaftaran</span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <!-- Tautan Tambahan Pendaftaran Baru -->
+            <div class="text-center pt-2">
+                <p class="text-[11px] text-slate-400">
+                    Belum pernah mendaftar?
+                    <a href="daftar-baru.html" class="text-emerald-400 font-bold hover:underline ml-1">
+                        Daftar Calon Siswa Baru <i class="fa-solid fa-arrow-right text-[10px] ml-0.5"></i>
+                    </a>
+                </p>
+            </div>
+
+            <div class="bg-emerald-950/30 border border-emerald-800/40 p-3 rounded-xl text-center mt-3">
+                <span class="text-[11px] text-emerald-300 block">
+                    <i class="fa-solid fa-circle-info mr-1"></i> Data disinkronkan langsung dari database pendaftar
+                    lokal.
+                </span>
+            </div>
+        </form>
     </div>
 
-    <!-- Modal Ganti / Reset Password Sendiri -->
+    <!-- Modal Ganti / Reset Password -->
     <div id="resetModal"
-        class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-all">
-        <div
-            class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-3xl p-6 shadow-2xl shadow-indigo-950/80">
+        class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-3xl p-6 shadow-2xl">
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center space-x-3">
                     <div
@@ -141,34 +173,33 @@
                     </div>
                     <div>
                         <h3 class="text-white font-bold text-sm">Reset Password Mandiri</h3>
-                        <p class="text-slate-400 text-[11px]">Masukkan username dan buat password baru Anda</p>
+                        <p class="text-slate-400 text-[11px]">Masukkan username dan buat password baru</p>
                     </div>
                 </div>
-                <button onclick="tutupModalReset()" class="text-slate-400 hover:text-white">
+                <button onclick="tutupModalReset()" class="text-slate-400 hover:text-white cursor-pointer">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
 
-            <div class="space-y-3">
+            <div class="space-y-3 text-xs">
                 <div>
-                    <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Username /
-                        ID Admin</label>
+                    <label class="block font-bold text-slate-400 uppercase tracking-wider mb-1">Username / ID
+                        Admin</label>
                     <input type="text" id="newResetUser" placeholder="Cth: admin"
-                        class="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500 text-white px-4 py-2.5 rounded-xl text-xs outline-none transition">
+                        class="w-full bg-slate-950/80 border border-slate-800 focus:border-indigo-500 text-white px-4 py-3 rounded-xl outline-none transition">
                 </div>
                 <div>
-                    <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Password
-                        Baru</label>
+                    <label class="block font-bold text-slate-400 uppercase tracking-wider mb-1">Password Baru</label>
                     <input type="password" id="newResetPass" placeholder="Masukkan password baru"
-                        class="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500 text-white px-4 py-2.5 rounded-xl text-xs outline-none transition">
+                        class="w-full bg-slate-950/80 border border-slate-800 focus:border-indigo-500 text-white px-4 py-3 rounded-xl outline-none transition">
                 </div>
                 <div class="flex space-x-2 pt-2">
                     <button onclick="tutupModalReset()"
-                        class="w-1/2 bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs transition">
+                        class="w-1/2 bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl transition cursor-pointer">
                         Batal
                     </button>
                     <button onclick="simpanPasswordBaru()"
-                        class="w-1/2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-indigo-600/30">
+                        class="w-1/2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-indigo-600/30 cursor-pointer">
                         Simpan Password
                     </button>
                 </div>
@@ -176,9 +207,61 @@
         </div>
     </div>
 
-    <!-- JavaScript Interaktif -->
+    <!-- JavaScript -->
     <script>
-        // Fitur Lihat/Sembunyikan Password Login
+        function pilihRole(role) {
+            const tabAdmin = document.getElementById('tabAdmin');
+            const tabSiswa = document.getElementById('tabSiswa');
+            const formAdmin = document.getElementById('formAdmin');
+            const formSiswa = document.getElementById('formSiswa');
+            const subheading = document.getElementById('subheadingText');
+
+            if (role === 'admin') {
+                tabAdmin.className = "py-2.5 rounded-xl transition cursor-pointer bg-indigo-600 text-white shadow-md";
+                tabSiswa.className = "py-2.5 rounded-xl transition cursor-pointer text-slate-400 hover:text-white";
+                formAdmin.classList.remove('hidden');
+                formSiswa.classList.add('hidden');
+                subheading.innerText = "Portal Verifikator & Admin PPDB SMK Binamitra";
+            } else {
+                tabSiswa.className = "py-2.5 rounded-xl transition cursor-pointer bg-emerald-600 text-white shadow-md";
+                tabAdmin.className = "py-2.5 rounded-xl transition cursor-pointer text-slate-400 hover:text-white";
+                formSiswa.classList.remove('hidden');
+                formAdmin.classList.add('hidden');
+                subheading.innerText = "Portal Cek Status Calon Siswa";
+            }
+        }
+
+        function showToast(title, message, isSuccess = true) {
+            const toast = document.getElementById('toastNotif');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastTitle.innerText = title;
+            toastMsg.innerText = message;
+
+            if (isSuccess) {
+                toastIcon.className = "w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0";
+                toastIcon.innerHTML = '<i class="fa-solid fa-check"></i>';
+            } else {
+                toastIcon.className = "w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center flex-shrink-0";
+                toastIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            }
+
+            toast.classList.remove('translate-x-full', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-x-full', 'opacity-0');
+            }, 3000);
+        }
+
+        function autoFillDemo() {
+            document.getElementById('username').value = 'admin';
+            const savedCustomPass = localStorage.getItem('admin_pass_admin');
+            const validPassword = savedCustomPass ? savedCustomPass : 'smkbinamitra';
+            document.getElementById('password').value = validPassword;
+            showToast("Auto-Fill Berhasil", "Kolom login terisi otomatis.", true);
+        }
+
         function togglePassword() {
             const passInput = document.getElementById('password');
             const eyeIcon = document.getElementById('eyeIcon');
@@ -193,7 +276,6 @@
             }
         }
 
-        // Fungsi Buka & Tutup Modal Reset
         function bukaModalReset() {
             document.getElementById('resetModal').classList.remove('hidden');
         }
@@ -204,45 +286,67 @@
             document.getElementById('newResetPass').value = '';
         }
 
-        // Fungsi Menyimpan Password Baru ke Browser (LocalStorage)
         function simpanPasswordBaru() {
             const user = document.getElementById('newResetUser').value.trim();
             const newPass = document.getElementById('newResetPass').value.trim();
 
             if (user === '' || newPass === '') {
-                alert('Mohon isi username dan password baru Anda!');
+                showToast("Peringatan", "Mohon isi username dan password baru!", false);
                 return;
             }
 
-            // Simpan password baru ke localStorage browser berdasarkan username
             localStorage.setItem('admin_pass_' + user, newPass);
-            alert(`Password untuk akun "${user}" berhasil diperbarui! Silakan login dengan password baru Anda.`);
             tutupModalReset();
+            showToast("Berhasil!", `Password akun "${user}" diperbarui.`, true);
         }
 
-        // Fungsi Proses Login
-        function handleLogin(event) {
+        function handleLoginAdmin(event) {
             event.preventDefault();
             const user = document.getElementById('username').value.trim();
             const pass = document.getElementById('password').value.trim();
             const errorAlert = document.getElementById('errorAlert');
             const submitBtn = document.getElementById('submitBtn');
 
-            // Cek apakah ada password custom tersimpan di localStorage, jika tidak gunakan default 'smkbinamitra'
             const savedCustomPass = localStorage.getItem('admin_pass_' + user);
             const validPassword = savedCustomPass ? savedCustomPass : 'smkbinamitra';
 
-            if (user === 'admin' && pass === validPassword) {
+            if (user.toLowerCase() === 'admin' && pass === validPassword) {
                 errorAlert.classList.add('hidden');
-                submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Memuat Berhasil...`;
+                submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Memuat Dashboard...`;
                 submitBtn.disabled = true;
+
+                showToast("Login Berhasil!", "Selamat datang di Portal Admin PPDB.", true);
 
                 setTimeout(() => {
                     window.location.href = 'index.html';
-                }, 800);
+                }, 1000);
             } else {
                 errorAlert.classList.remove('hidden');
                 document.getElementById('errorText').innerText = "Username atau Password salah!";
+                showToast("Login Gagal", "Periksa kembali username atau password Anda.", false);
+            }
+        }
+
+        function handleLoginSiswa(event) {
+            event.preventDefault();
+            const nisn = document.getElementById('nisnSiswa').value.trim();
+
+            if (!nisn) {
+                showToast("Peringatan", "Mohon masukkan NISN Anda!", false);
+                return;
+            }
+
+            let daftarSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb') || '[]');
+            let siswaDitemukan = daftarSiswa.find(s => s.nisn === nisn);
+
+            if (siswaDitemukan) {
+                showToast("NISN Ditemukan!", "Mengalihkan ke Portal Siswa...", true);
+                sessionStorage.setItem('active_nisn', nisn);
+                setTimeout(() => {
+                    window.location.href = 'portal-siswa.html';
+                }, 1000);
+            } else {
+                showToast("Gagal", "NISN tidak ditemukan di database pendaftar!", false);
             }
         }
     </script>

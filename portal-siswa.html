@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Siswa - PPDB Online SMK Binamitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#f4f7fe] font-sans text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- NAVBAR TOP -->
+    <header class="bg-[#0B132B] text-white shadow-md sticky top-0 z-20">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 bg-white rounded-xl flex items-center justify-center p-1 shadow">
+                    <img src="logo.png" alt="Logo" class="w-full h-full object-contain"
+                        onerror="this.style.display='none'">
+                </div>
+                <div>
+                    <h2 class="font-black text-xs tracking-wider uppercase">SMK BINAMITRA</h2>
+                    <p class="text-[10px] text-slate-400">Portal Resmi Calon Siswa Baru</p>
+                </div>
+            </div>
+            <div>
+                <a href="login.html" onclick="sessionStorage.clear()"
+                    class="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 text-xs font-bold px-4 py-2 rounded-xl transition flex items-center space-x-2">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Keluar Portal</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-5xl mx-auto px-6 py-8 flex-1 w-full space-y-6">
+
+        <!-- BANNER SELAMAT DATANG -->
+        <div
+            class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-700 rounded-3xl p-6 md:p-8 text-white shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="space-y-2">
+                <span
+                    class="bg-white/20 text-emerald-100 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20">Dashboard
+                    Calon Peserta Didik</span>
+                <h1 id="salamSiswa" class="text-2xl md:text-3xl font-black">Halo, Calon Siswa! 👋</h1>
+                <p class="text-emerald-100 text-xs max-w-xl">Pantau perkembangan status verifikasi berkas pendaftaran
+                    PPDB SMK Binamitra Tahun Ajaran 2026/2027 secara mandiri di sini.</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl text-center min-w-[200px]">
+                <span class="block text-[10px] text-emerald-200 uppercase font-bold">Status Berkas Saat Ini</span>
+                <span id="badgeStatusHeader"
+                    class="inline-block mt-1 px-3 py-1 rounded-full text-xs font-extrabold bg-amber-400 text-slate-950">Menunggu
+                    Verifikasi</span>
+            </div>
+        </div>
+
+        <!-- GRID KONTEN UTAMA -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- KIRI & TENGAH: INFORMASI STATUS & DETAIL BIODATA -->
+            <div class="md:col-span-2 space-y-6">
+
+                <!-- CARD STATUS ALUR PENDAFTARAN -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+                    <h3 class="font-black text-slate-900 text-sm flex items-center space-x-2">
+                        <i class="fa-solid fa-timeline text-emerald-600"></i>
+                        <span>Keterangan Status & Perkembangan Seleksi</span>
+                    </h3>
+                    <div id="statusKeteranganBox"
+                        class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs space-y-1">
+                        <p class="font-bold text-sm" id="statusTitleCard">MENUNGGU VERIFIKASI</p>
+                        <p id="statusDescCard" class="text-amber-800/90 leading-relaxed">Formulir pendaftaran sudah
+                            berhasil dikirim dan saat ini sedang menunggu pemeriksaan serta validasi berkas oleh panitia
+                            admin sekolah.</p>
+                    </div>
+
+                    <!-- TOMBOL DAFTAR ULANG (MUNCUL JIKA DITERIMA) -->
+                    <div id="containerDaftarUlang" class="hidden pt-2">
+                        <div
+                            class="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <h4 class="font-bold text-emerald-900 text-xs"><i
+                                        class="fa-solid fa-graduation-cap mr-1 text-emerald-600"></i> Selamat! Anda
+                                    Dinyatakan Diterima</h4>
+                                <p class="text-[11px] text-emerald-700 mt-0.5">Silakan lakukan konfirmasi daftar ulang
+                                    untuk mengamankan kursi Anda.</p>
+                            </div>
+                            <button onclick="prosesDaftarUlang()"
+                                class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-5 py-3 rounded-xl shadow-md transition whitespace-nowrap cursor-pointer">
+                                Konfirmasi Daftar Ulang <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD DETAIL BIODATA PENDAFTARAN -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+                    <h3 class="font-black text-slate-900 text-sm flex items-center space-x-2">
+                        <i class="fa-solid fa-id-card text-emerald-600"></i>
+                        <span>Informasi Biodata Pendaftaran</span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block mb-0.5">Nama
+                                Lengkap</span>
+                            <span id="detNama" class="font-black text-slate-900 text-sm">-</span>
+                        </div>
+                        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block mb-0.5">Nomor NISN</span>
+                            <span id="detNisn" class="font-black text-slate-900 text-sm">-</span>
+                        </div>
+                        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block mb-0.5">Asal Sekolah
+                                (SMP/MTs)</span>
+                            <span id="detSekolah" class="font-bold text-slate-800">-</span>
+                        </div>
+                        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block mb-0.5">Jalur
+                                Pendaftaran</span>
+                            <span id="detJalur" class="font-bold text-indigo-700">-</span>
+                        </div>
+                        <div class="sm:col-span-2 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block mb-0.5">Kompetensi
+                                Keahlian (Pilihan Jurusan)</span>
+                            <span id="detJurusan" class="font-black text-indigo-700 text-sm">-</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- KANAN: PANDUAN & BANTUAN -->
+            <div class="space-y-6">
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 space-y-4">
+                    <h3 class="font-black text-slate-900 text-sm flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-question text-emerald-600"></i>
+                        <span>Bantuan & Kontak Panitia</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Jika ada kendala pada data atau dokumen yang perlu
+                        diperbaiki (*Perlu Perbaikan*), silakan hubungi layanan panitia PPDB SMK Binamitra.</p>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                            <i class="fa-brands fa-whatsapp text-emerald-600 text-lg"></i>
+                            <div>
+                                <span class="font-bold block text-slate-800">Panitia PPDB (WhatsApp)</span>
+                                <span class="text-slate-500 text-[11px]">0812-3456-7890</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                            <i class="fa-solid fa-envelope text-indigo-600 text-base"></i>
+                            <div>
+                                <span class="font-bold block text-slate-800">Email Resmi</span>
+                                <span class="text-slate-500 text-[11px]">ppdb@smkbinamitra.sch.id</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-400">
+        <p>© 2026 Panitia Penerimaan Peserta Didik Baru (PPDB) • SMK Binamitra</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIKA PORTAL SISWA -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let activeNisn = sessionStorage.getItem('active_nisn');
+            if (!activeNisn) {
+                // Jika belum login via NISN, kembalikan ke login
+                window.location.href = 'login.html';
+                return;
+            }
+
+            let daftarSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb') || '[]');
+            let siswa = daftarSiswa.find(s => s.nisn === activeNisn);
+
+            if (!siswa) {
+                alert("Data siswa tidak ditemukan.");
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Tampilkan Data ke Halaman
+            document.getElementById('salamSiswa').innerText = "Halo, " + (siswa.nama || "Calon Siswa") + "! 👋";
+            document.getElementById('detNama').innerText = siswa.nama || "-";
+            document.getElementById('detNisn').innerText = siswa.nisn || "-";
+            document.getElementById('detSekolah').innerText = siswa.sekolah || "-";
+            document.getElementById('detJalur').innerText = siswa.jalur || "-";
+            document.getElementById('detJurusan').innerText = siswa.jurusan || "-";
+
+            // Atur Tampilan Berdasarkan Status
+            let status = (siswa.status || "Menunggu Verifikasi").trim();
+            let badgeHeader = document.getElementById('badgeStatusHeader');
+            let statusBox = document.getElementById('statusKeteranganBox');
+            let statusTitle = document.getElementById('statusTitleCard');
+            let statusDesc = document.getElementById('statusDescCard');
+            let containerDaftarUlang = document.getElementById('containerDaftarUlang');
+
+            badgeHeader.innerText = status;
+
+            if (status === 'Terverifikasi') {
+                badgeHeader.className = "inline-block mt-1 px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500 text-white";
+                statusBox.className = "p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs space-y-1";
+                statusTitle.innerText = "BERKAS TERVERIFIKASI";
+                statusDesc.innerText = "Data dan dokumen Anda sudah diperiksa serta dinyatakan sesuai. Anda tinggal menunggu pengumuman hasil seleksi akhir.";
+            } else if (status === 'Perlu Perbaikan' || status === 'Revisi') {
+                badgeHeader.className = "inline-block mt-1 px-3 py-1 rounded-full text-xs font-extrabold bg-orange-500 text-white";
+                statusBox.className = "p-4 rounded-2xl bg-orange-50 border border-orange-200 text-orange-900 text-xs space-y-1";
+                statusTitle.innerText = "PERLU PERBAIKAN / REVISI";
+                statusDesc.innerText = "Catatan Admin: Ada data atau dokumen yang perlu diperbaiki. Silakan hubungi panitia sekolah untuk instruksi revisi.";
+            } else if (status === 'Diterima') {
+                badgeHeader.className = "inline-block mt-1 px-3 py-1 rounded-full text-xs font-extrabold bg-blue-600 text-white";
+                statusBox.className = "p-4 rounded-2xl bg-blue-50 border border-blue-200 text-blue-900 text-xs space-y-1";
+                statusTitle.innerText = "DITERIMA / LOLOS SELEKSI";
+                statusDesc.innerText = "Selamat! Calon siswa dinyatakan lolos seleksi penerimaan siswa baru SMK Binamitra.";
+                containerDaftarUlang.classList.remove('hidden');
+            } else if (status === 'Ditolak' || status === 'Tidak Diterima') {
+                badgeHeader.className = "inline-block mt-1 px-3 py-1 rounded-full text-xs font-extrabold bg-rose-600 text-white";
+                statusBox.className = "p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 text-xs space-y-1";
+                statusTitle.innerText = "TIDAK DITERIMA";
+                statusDesc.innerText = "Mohon maaf, calon siswa belum lolos seleksi berdasarkan ketentuan daya tampung yang berlaku.";
+            } else {
+                badgeHeader.className = "inline-block mt-1 px-3 py-1 rounded-full text-xs font-extrabold bg-amber-400 text-slate-950";
+                statusBox.className = "p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs space-y-1";
+                statusTitle.innerText = "MENUNGGU VERIFIKASI";
+                statusDesc.innerText = "Formulir sudah dikirim dan sedang menunggu pemeriksaan oleh admin.";
+            }
+        });
+
+        function prosesDaftarUlang() {
+            alert("Konfirmasi daftar ulang berhasil disimpan! Silakan datang ke sekolah membawa bukti cetak untuk verifikasi akhir.");
+        }
+    </script>
+</body>
+
+</html>

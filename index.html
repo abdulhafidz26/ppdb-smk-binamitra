@@ -91,11 +91,6 @@
                     <span>Dashboard Utama Admin PPDB</span>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <button onclick="bukaModalTambah()"
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition flex items-center space-x-2 cursor-pointer">
-                        <i class="fa-solid fa-user-plus"></i>
-                        <span>Tambah Siswa Baru</span>
-                    </button>
                     <div class="flex items-center space-x-3 border-l pl-4 border-slate-200">
                         <div
                             class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs">
@@ -126,9 +121,14 @@
                             baru SMK Binamitra tahun ajaran 2026/2027 secara real-time dan kelola berkas verifikasi
                             dengan mudah.</p>
                     </div>
-                    <div class="relative z-10 flex flex-col sm:flex-row gap-3">
+                    <div class="relative z-10 flex flex-col sm:flex-row gap-3 flex-shrink-0">
+                        <button onclick="bukaModalTambah()"
+                            class="bg-white hover:bg-slate-100 text-indigo-900 font-bold text-xs px-5 py-3 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 cursor-pointer">
+                            <i class="fa-solid fa-user-plus text-indigo-600"></i>
+                            <span>Tambah Siswa Baru</span>
+                        </button>
                         <a href="data-siswa.html"
-                            class="bg-white hover:bg-slate-100 text-indigo-900 font-bold text-xs px-5 py-3 rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                            class="bg-indigo-950/40 hover:bg-indigo-950/60 border border-white/20 text-white font-bold text-xs px-5 py-3 rounded-xl transition flex items-center justify-center space-x-2">
                             <span>Kelola Data Siswa</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -157,7 +157,7 @@
                         </div>
                     </a>
 
-                    <a href="data-siswa.html"
+                    <a href="data-siswa.html?status=Terverifikasi"
                         class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-emerald-400 transition group block relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-bl-full -z-0"></div>
                         <div class="relative z-10">
@@ -174,7 +174,7 @@
                         </div>
                     </a>
 
-                    <a href="data-siswa.html"
+                    <a href="data-siswa.html?status=Menunggu"
                         class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-amber-400 transition group block relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-bl-full -z-0"></div>
                         <div class="relative z-10">
@@ -191,7 +191,7 @@
                         </div>
                     </a>
 
-                    <a href="data-siswa.html"
+                    <a href="data-siswa.html?status=Ditolak"
                         class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md hover:border-rose-400 transition group block relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-24 h-24 bg-rose-50 rounded-bl-full -z-0"></div>
                         <div class="relative z-10">
@@ -209,7 +209,7 @@
                     </a>
                 </div>
 
-                <!-- GRAFIK STATISTIK CHART.JS (MEMENUHI KETENTUAN MILESTONE 3) -->
+                <!-- GRAFIK STATISTIK CHART.JS -->
                 <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm space-y-4">
                     <div class="flex items-center justify-between">
                         <h3 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
@@ -222,40 +222,6 @@
                     </div>
                     <div class="w-full h-72 relative">
                         <canvas id="pendaftarChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- INFORMASI JALUR -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm">
-                    <h3 class="font-bold text-slate-900 text-sm mb-4 flex items-center space-x-2">
-                        <i class="fa-solid fa-bullhorn text-indigo-600"></i>
-                        <span>Informasi Sistem & Jalur Pendaftaran</span>
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                            <span
-                                class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full inline-block mb-2">Zonasi
-                                (50%)</span>
-                            <h4 class="font-bold text-slate-900 text-xs mb-1">Jalur Domisili Terdekat</h4>
-                            <p class="text-[11px] text-slate-500">Kuota 50% dari total daya tampung sekolah berdasarkan
-                                jarak tempat tinggal.</p>
-                        </div>
-                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                            <span
-                                class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full inline-block mb-2">Prestasi
-                                (30%)</span>
-                            <h4 class="font-bold text-slate-900 text-xs mb-1">Jalur Nilai & Kejuaraan</h4>
-                            <p class="text-[11px] text-slate-500">Kuota 30% berdasarkan rerata nilai rapor semester 1-5
-                                dan sertifikat lomba.</p>
-                        </div>
-                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                            <span
-                                class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full inline-block mb-2">Afirmasi
-                                (20%)</span>
-                            <h4 class="font-bold text-slate-900 text-xs mb-1">Jalur Keluarga Prasejahtera</h4>
-                            <p class="text-[11px] text-slate-500">Kuota 20% untuk pemegang KIP/PKH dan perpindahan tugas
-                                orang tua.</p>
-                        </div>
                     </div>
                 </div>
             </main>
@@ -295,13 +261,28 @@
                             <option value="Zonasi">Jalur Zonasi</option>
                             <option value="Prestasi">Jalur Prestasi</option>
                             <option value="Afirmasi">Jalur Afirmasi</option>
+                            <option value="Mutasi">Jalur Mutasi</option>
                         </select>
                     </div>
                 </div>
-                <div>
-                    <label class="block font-bold text-slate-700 mb-1">Asal Sekolah (SMP/MTs)</label>
-                    <input type="text" id="inputSekolah" placeholder="Contoh: SMPN 3 Cikarang"
-                        class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/40">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Kompetensi Keahlian (Jurusan)</label>
+                        <select id="inputJurusan"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none">
+                            <option value="Teknik Komputer dan Jaringan (TKJ)">Teknik Komputer dan Jaringan (TKJ)
+                            </option>
+                            <option value="Akuntansi dan Keuangan Lembaga (AK)">Akuntansi dan Keuangan Lembaga (AK)
+                            </option>
+                            <option value="Teknik Bisnis Sepeda Motor (TSM)">Teknik Bisnis Sepeda Motor (TSM)</option>
+                            <option value="Teknik Kendaraan Ringan (TKR)">Teknik Kendaraan Ringan (TKR)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Asal Sekolah (SMP/MTs)</label>
+                        <input type="text" id="inputSekolah" placeholder="Contoh: SMPN 3 Cikarang"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/40">
+                    </div>
                 </div>
             </div>
             <div class="p-5 border-t border-slate-100 bg-slate-50 flex justify-end space-x-3">
@@ -314,13 +295,17 @@
         </div>
     </div>
 
-    <!-- SCRIPT STATISTIK, CHART.JS, & AUTO UPPERCASE -->
+    <!-- SCRIPT STATISTIK & LOCALSTORAGE -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const dataDefaultAwal = [
-                { nama: "MUHAMMAD RIZKY PRATAMA", nisn: "0079912305", sekolah: "SMP Negeri 1 Cikarang Utara", jalur: "Zonasi", tgl: "12 Mei 2026", status: "Terverifikasi", foto: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=faces" },
-                { nama: "SITI RAHMA AZZAHRA", nisn: "0087654321", sekolah: "SMPN 2 Tambun Selatan", jalur: "Prestasi", tgl: "12 Mei 2026", status: "Menunggu", foto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" },
-                { nama: "BUDI SANTOSO WIBOWO", nisn: "0089876542", sekolah: "MTsN 1 Bekasi", jalur: "Afirmasi", tgl: "13 Mei 2026", status: "Ditolak", foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" }
+                { id: "s_1", nama: "MUHAMMAD RIZKY PRATAMA", nisn: "0079912305", sekolah: "SMP Negeri 1 Cikarang Utara", jalur: "Zonasi", jurusan: "Teknik Komputer dan Jaringan (TKJ)", tgl: "12 Mei 2026", status: "Ditolak", foto: "" },
+                { id: "s_2", nama: "SITI RAHMA AZZAHRA", nisn: "0087654321", sekolah: "SMPN 2 Tambun Selatan", jalur: "Prestasi", jurusan: "Akuntansi dan Keuangan Lembaga (AK)", tgl: "12 Mei 2026", status: "Terverifikasi", foto: "" },
+                { id: "s_3", nama: "BUDI SANTOSO WIBOWO", nisn: "0089876542", sekolah: "MTsN 1 Bekasi", jalur: "Afirmasi", jurusan: "Teknik Bisnis Sepeda Motor (TSM)", tgl: "13 Mei 2026", status: "Terverifikasi", foto: "" },
+                { id: "s_4", nama: "DEWI LESTARI", nisn: "0084561239", sekolah: "SMP Swasta Don Bosco Cikarang", jalur: "Zonasi", jurusan: "Teknik Kendaraan Ringan (TKR)", tgl: "13 Mei 2026", status: "Ditolak", foto: "" },
+                { id: "s_5", nama: "AHHMAD NUR ALI RAMADHAN", nisn: "2842445", sekolah: "SMPN 1 GUNUNG SINDUR", jalur: "Prestasi", jurusan: "Teknik Komputer dan Jaringan (TKJ)", tgl: "14 Mei 2026", status: "Menunggu", foto: "" },
+                { id: "s_6", nama: "ABDUL", nisn: "2328839", sekolah: "SMPN 2 CIKARANG TIMUR", jalur: "Zonasi", jurusan: "Akuntansi dan Keuangan Lembaga (AK)", tgl: "14 Mei 2026", status: "Terverifikasi", foto: "" },
+                { id: "s_7", nama: "UJANG", nisn: "26240569", sekolah: "SMPN 2 CIKARANG BARAT", jalur: "Zonasi", jurusan: "Teknik Bisnis Sepeda Motor (TSM)", tgl: "15 Mei 2026", status: "Revisi", foto: "" }
             ];
 
             let semuaSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb'));
@@ -329,32 +314,30 @@
                 localStorage.setItem('semua_siswa_ppdb', JSON.stringify(semuaSiswa));
             }
 
-            // Hitung Statistik Angka
             let total = semuaSiswa.length;
-            let verifikasi = semuaSiswa.filter(s => s.status === 'Terverifikasi').length;
-            let menunggu = semuaSiswa.filter(s => !s.status || s.status === 'Menunggu' || s.status === 'Menunggu Validasi' || s.status === 'Revisi').length;
-            let ditolak = semuaSiswa.filter(s => s.status === 'Ditolak').length;
+            let verifikasi = semuaSiswa.filter(s => s.status.toLowerCase() === 'terverifikasi').length;
+            let menunggu = semuaSiswa.filter(s => s.status.toLowerCase() === 'menunggu' || s.status.toLowerCase() === 'revisi').length;
+            let ditolak = semuaSiswa.filter(s => s.status.toLowerCase() === 'ditolak').length;
 
             document.getElementById('statTotal').innerText = total;
             document.getElementById('statVerifikasi').innerText = verifikasi;
             document.getElementById('statMenunggu').innerText = menunggu;
             document.getElementById('statDitolak').innerText = ditolak;
 
-            // Hitung Data untuk Chart.js
             let zonasiCount = semuaSiswa.filter(s => s.jalur === 'Zonasi').length;
             let prestasiCount = semuaSiswa.filter(s => s.jalur === 'Prestasi').length;
-            let afirmasiCount = semuaSiswa.filter(s => s.jalur === 'Afirmasi' || s.jalur === 'Pindah Tugas').length;
+            let afirmasiCount = semuaSiswa.filter(s => s.jalur === 'Afirmasi').length;
+            let mutasiCount = semuaSiswa.filter(s => s.jalur === 'Mutasi' || s.jalur === 'Perpindahan Tugas').length;
 
-            // Render Chart.js
             const ctx = document.getElementById('pendaftarChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Jalur Zonasi', 'Jalur Prestasi', 'Jalur Afirmasi'],
+                    labels: ['Zonasi', 'Prestasi', 'Afirmasi', 'Mutasi'],
                     datasets: [{
                         label: 'Jumlah Pendaftar',
-                        data: [zonasiCount, prestasiCount, afirmasiCount],
-                        backgroundColor: ['#4f46e5', '#7c3aed', '#f59e0b'],
+                        data: [zonasiCount, prestasiCount, afirmasiCount, mutasiCount],
+                        backgroundColor: ['#4f46e5', '#7c3aed', '#f59e0b', '#06b6d4'],
                         borderRadius: 8
                     }]
                 },
@@ -389,9 +372,10 @@
             const nisn = document.getElementById('inputNisn').value.trim();
             const sekolah = document.getElementById('inputSekolah').value.trim();
             const jalur = document.getElementById('inputJalur').value;
+            const jurusan = document.getElementById('inputJurusan').value;
 
             if (!nama || !nisn || !sekolah) {
-                alert("Mohon lengkapi seluruh data formulir siswa!");
+                tampilkanToast("Mohon lengkapi seluruh data formulir siswa!", "error");
                 return;
             }
 
@@ -402,16 +386,31 @@
                 nisn: nisn,
                 sekolah: sekolah,
                 jalur: jalur,
+                jurusan: jurusan,
                 tgl: "17 Sep 2026",
                 status: "Menunggu",
-                foto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
+                foto: ""
             });
 
             localStorage.setItem('semua_siswa_ppdb', JSON.stringify(semuaSiswa));
 
-            alert("Data calon siswa baru berhasil ditambahkan!");
             tutupModalTambah();
-            window.location.href = "data-siswa.html";
+
+            tampilkanToast("Data calon siswa baru berhasil ditambahkan!", "success");
+            setTimeout(() => {
+                window.location.href = "data-siswa.html";
+            }, 1200);
+        }
+
+        function tampilkanToast(pesan, tipe = "success") {
+            const toast = document.createElement('div');
+            let warnaBg = tipe === "success" ? "bg-slate-900 text-white" : "bg-rose-600 text-white";
+            let ikon = tipe === "success" ? '<i class="fa-solid fa-circle-check text-emerald-400"></i>' : '<i class="fa-solid fa-triangle-exclamation text-white"></i>';
+
+            toast.className = `fixed bottom-5 right-5 ${warnaBg} px-5 py-3.5 rounded-2xl shadow-2xl text-xs font-bold z-50 flex items-center space-x-2.5 transition-all duration-300`;
+            toast.innerHTML = `${ikon} <span>${pesan}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
         }
     </script>
 </body>

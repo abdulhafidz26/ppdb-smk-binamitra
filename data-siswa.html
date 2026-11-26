@@ -4,196 +4,499 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Calon Siswa - PPDB Online SMK Binamitra</title>
+    <title>Master Data Calon Siswa - PPDB Online SMK Binamitra</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
 
-<body class="bg-[#f4f7fe] font-sans text-slate-800">
-    <div class="flex h-screen overflow-hidden">
+<body class="bg-[#f4f7fe] font-sans h-screen overflow-hidden flex text-slate-800">
 
-        <!-- SIDEBAR -->
-        <aside
-            class="w-64 bg-[#0B132B] text-slate-300 flex flex-col justify-between border-r border-slate-800 select-none flex-shrink-0">
-            <div>
-                <div class="p-4 flex items-center space-x-3 border-b border-slate-800/80">
-                    <div
-                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 shadow-md overflow-hidden flex-shrink-0">
-                        <img src="logo.png" alt="Logo SMK Binamitra" class="w-full h-full object-contain">
-                    </div>
-                    <div>
-                        <h2 class="font-bold text-white text-sm tracking-wide">SMK BINAMITRA</h2>
-                        <p class="text-[10px] text-slate-400">Portal PPDB Online</p>
-                    </div>
-                </div>
-
-                <div class="p-4 grid grid-cols-2 gap-2 border-b border-slate-800/80 bg-slate-900/50">
-                    <div class="bg-emerald-950/60 border border-emerald-800/50 rounded-lg p-2 text-center">
-                        <span class="block text-[9px] text-emerald-400 font-semibold uppercase">TA 2026/2027</span>
-                    </div>
-                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-lg p-2 text-center">
-                        <span class="block text-[9px] text-slate-300 font-semibold uppercase">ID: SMKBN01</span>
-                    </div>
-                </div>
-
-                <nav class="p-3 space-y-1 text-sm">
-                    <a href="index.html"
-                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
-                        <i class="fa-solid fa-chart-pie w-4 text-center"></i><span>Dashboard</span>
-                    </a>
-                    <a href="data-siswa.html"
-                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/20">
-                        <i class="fa-solid fa-users w-4 text-center"></i><span>Data Calon Siswa</span>
-                    </a>
-                    <a href="jurusan.html"
-                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
-                        <i class="fa-solid fa-graduation-cap w-4 text-center"></i><span>Data Jurusan & Kuota</span>
-                    </a>
-                    <a href="laporan.html"
-                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
-                        <i class="fa-solid fa-file-lines w-4 text-center"></i><span>Laporan Rekapitulasi</span>
-                    </a>
-                    <a href="pengumuman.html"
-                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
-                        <i class="fa-solid fa-bullhorn w-4 text-center"></i><span>Pengumuman</span>
-                    </a>
-                    <a href="pengaturan.html"
-                        class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
-                        <i class="fa-solid fa-gear w-4 text-center"></i><span>Pengaturan Akun</span>
-                    </a>
-                </nav>
-            </div>
-
-            <div class="p-4 border-t border-slate-800/80 bg-slate-900/40 text-xs">
-                <div class="flex items-center justify-between mb-1">
-                    <span class="text-slate-400 font-medium">SERVER PPDB</span>
-                    <span class="bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded">ONLINE</span>
-                </div>
-                <p class="text-[10px] text-slate-500">Aktif & Terhubung / Terbuka</p>
-            </div>
-        </aside>
-
-        <!-- MAIN CONTENT -->
-        <div class="flex-1 flex flex-col overflow-y-auto">
-            <header
-                class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-8 sticky top-0 z-10 shadow-sm">
-                <div class="flex items-center space-x-3 text-xs font-semibold text-slate-600">
-                    <span class="text-slate-400">PPDB Online</span>
-                    <span class="text-slate-300">/</span>
-                    <span class="text-indigo-600 font-bold">Master Data Calon Siswa</span>
+    <!-- SIDEBAR -->
+    <aside
+        class="w-64 bg-[#0B132B] text-slate-300 flex flex-col justify-between border-r border-slate-800 select-none flex-shrink-0 h-screen overflow-y-auto">
+        <div>
+            <!-- LOGO & BRAND -->
+            <div class="p-4 flex items-center space-x-3 border-b border-slate-800/80">
+                <div
+                    class="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1 shadow-md overflow-hidden flex-shrink-0">
+                    <img src="logo.png" alt="Logo SMK Binamitra" class="w-full h-full object-contain"
+                        onerror="this.style.display='none'">
                 </div>
                 <div>
-                    <span id="infoFilterStatus"
-                        class="text-xs bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-xl font-bold hidden">Menampilkan
-                        Filter</span>
+                    <h2 class="font-bold text-white text-sm tracking-wide">SMK BINAMITRA</h2>
+                    <p class="text-[10px] text-slate-400">Portal PPDB Online</p>
                 </div>
-            </header>
+            </div>
 
-            <main class="p-8 space-y-6">
-                <!-- TABEL DATA SISWA -->
-                <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden p-6 space-y-4">
-                    <div class="flex justify-between items-center">
-                        <h3 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
-                            <i class="fa-solid fa-users text-indigo-600"></i>
-                            <span>Daftar Seluruh Calon Peserta Didik</span>
-                        </h3>
-                        <div class="flex items-center space-x-2">
-                            <input type="text" id="inputCari" onkeyup="cariSiswa()" placeholder="Cari nama / NISN..."
-                                class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500/40 w-64">
+            <div class="p-4 grid grid-cols-2 gap-2 border-b border-slate-800/80 bg-slate-900/50">
+                <div class="bg-emerald-950/60 border border-emerald-800/50 rounded-lg p-2 text-center">
+                    <span class="block text-[9px] text-emerald-400 font-semibold uppercase">TA 2026/2027</span>
+                </div>
+                <div class="bg-slate-800/60 border border-slate-700/50 rounded-lg p-2 text-center">
+                    <span class="block text-[9px] text-slate-300 font-semibold uppercase">ID: SMKBN01</span>
+                </div>
+            </div>
+
+            <nav class="p-3 space-y-1 text-sm">
+                <a href="index.html"
+                    class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                    <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="data-siswa.html"
+                    class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/20">
+                    <i class="fa-solid fa-users w-4 text-center"></i>
+                    <span>Data Calon Siswa</span>
+                </a>
+                <a href="jurusan.html"
+                    class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                    <i class="fa-solid fa-graduation-cap w-4 text-center"></i>
+                    <span>Data Jurusan & Kuota</span>
+                </a>
+                <a href="laporan.html"
+                    class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                    <i class="fa-solid fa-file-lines w-4 text-center"></i>
+                    <span>Laporan Rekapitulasi</span>
+                </a>
+                <a href="pengumuman.html"
+                    class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                    <i class="fa-solid fa-bullhorn w-4 text-center"></i>
+                    <span>Pengumuman</span>
+                </a>
+                <a href="pengaturan.html"
+                    class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl hover:bg-slate-800/60 text-slate-300 hover:text-white transition">
+                    <i class="fa-solid fa-gear w-4 text-center"></i>
+                    <span>Pengaturan Akun</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="p-4 border-t border-slate-800/80 bg-slate-900/40 text-xs">
+            <div class="flex items-center justify-between mb-1">
+                <span class="text-slate-400 font-medium">SERVER PPDB</span>
+                <span class="bg-emerald-500 text-slate-950 font-bold text-[9px] px-2 py-0.5 rounded">ONLINE</span>
+            </div>
+            <p class="text-[10px] text-slate-500">Aktif & Terhubung / Terbuka</p>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="flex-1 flex flex-col h-screen overflow-y-auto">
+        <!-- HEADER ATAS -->
+        <header
+            class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-8 sticky top-0 z-10 shadow-sm flex-shrink-0">
+            <div class="flex items-center space-x-3 text-xs font-semibold text-slate-600">
+                <i class="fa-solid fa-house text-indigo-600"></i>
+                <span>Dashboard Utama Admin PPDB / <span class="text-indigo-600">Data Calon Siswa</span></span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition flex items-center space-x-2">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Kembali ke Dashboard</span>
+                </a>
+                <div class="flex items-center space-x-3 border-l pl-4 border-slate-200">
+                    <div
+                        class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs">
+                        AD</div>
+                    <span class="text-xs font-bold text-slate-700">Admin PPDB</span>
+                    <a href="login.html"
+                        class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1.5 rounded-xl transition flex items-center space-x-1.5 ml-2">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Keluar</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN BODY -->
+        <main class="p-8 space-y-6">
+            <!-- BANNER UNGU -->
+            <div
+                class="relative bg-gradient-to-r from-indigo-900 via-indigo-800 to-blue-700 rounded-2xl p-6 text-white shadow-xl overflow-hidden flex items-center justify-between">
+                <div class="relative z-10">
+                    <span id="bannerBadge"
+                        class="bg-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block border border-white/20">DATABASE
+                        PENDAFTAR</span>
+                    <h2 id="bannerTitle" class="text-xl md:text-2xl font-black">Master Data Calon Peserta Didik</h2>
+                    <p id="bannerDesc" class="text-indigo-100 text-xs mt-1">Kelola, periksa status berkas, jurusan, dan
+                        arsip data calon siswa secara real-time.</p>
+                </div>
+                <div class="relative z-10">
+                    <a href="data-siswa.html" id="resetFilterBtn"
+                        class="hidden bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-4 py-2.5 rounded-xl border border-white/20 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Tampilkan Semua Data</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CARD TABEL DATA -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 overflow-hidden mb-8">
+                <div
+                    class="p-6 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <h3 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
+                        <i class="fa-solid fa-users text-indigo-600"></i>
+                        <span>Tabel Data Pendaftar Aktif</span>
+                    </h3>
+
+                    <div class="flex items-center space-x-3 w-full sm:w-auto">
+                        <button onclick="bukaModalTrash()"
+                            class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center space-x-2 cursor-pointer border border-slate-200/80">
+                            <i class="fa-solid fa-trash-arrow-up text-rose-500"></i>
+                            <span>Tempat Sampah (<span id="trashCount">0</span>)</span>
+                        </button>
+
+                        <div class="relative flex-1 sm:w-64">
+                            <input type="text" id="searchInput" placeholder="Cari nama / NISN..."
+                                class="w-full pl-4 pr-10 py-2 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500/40">
+                            <span class="absolute right-3 top-2.5 text-slate-400"><i
+                                    class="fa-solid fa-search"></i></span>
                         </div>
                     </div>
-
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse text-xs">
-                            <thead>
-                                <tr class="border-b border-slate-200 text-slate-400 font-semibold bg-slate-50">
-                                    <th class="p-3">CALON SISWA</th>
-                                    <th class="p-3">NISN</th>
-                                    <th class="p-3">ASAL SEKOLAH</th>
-                                    <th class="p-3">JALUR</th>
-                                    <th class="p-3 text-center">STATUS BERKAS</th>
-                                    <th class="p-3 text-center">AKSI</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tabelSiswaBody" class="divide-y divide-slate-100">
-                                <!-- Render via JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
-            </main>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="bg-slate-50 text-slate-600 text-xs font-bold uppercase border-b border-slate-100">
+                                <th class="p-4 w-12 text-center">NO.</th>
+                                <th class="p-4">CALON SISWA</th>
+                                <th class="p-4">NISN</th>
+                                <th class="p-4">ASAL SEKOLAH</th>
+                                <th class="p-4">NO. WHATSAPP</th>
+                                <th class="p-4">JURUSAN</th>
+                                <th class="p-4">JALUR</th>
+                                <th class="p-4">STATUS BERKAS</th>
+                                <th class="p-4 text-center">AKSI</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-siswa" class="text-slate-700 text-xs">
+                            <!-- Data akan dimuat otomatis oleh JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL TEMPAT SAMPAH (TRASH) -->
+    <div id="modalTrash"
+        class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div
+            class="bg-white rounded-3xl w-full max-w-4xl shadow-2xl overflow-hidden border border-slate-200 max-h-[85vh] flex flex-col">
+            <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+                <h3 class="font-black text-slate-900 text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-trash-arrow-up text-rose-500"></i>
+                    <span>Tempat Sampah / Arsip Data Siswa yang Dihapus</span>
+                </h3>
+                <button onclick="tutupModalTrash()"
+                    class="text-slate-400 hover:text-slate-600 text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 text-slate-600 text-xs font-bold uppercase border-b border-slate-100">
+                            <th class="p-3 w-12 text-center">NO.</th>
+                            <th class="p-3">CALON SISWA</th>
+                            <th class="p-3">NISN</th>
+                            <th class="p-3">ASAL SEKOLAH</th>
+                            <th class="p-3 text-center">AKSI PEMULIHAN</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-trash" class="text-slate-700 text-xs">
+                        <!-- Data trash dimuat di sini -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-xs">
+                <span class="text-slate-400">Data di tempat sampah dapat dipulihkan kembali kapan saja.</span>
+                <button onclick="tutupModalTrash()"
+                    class="bg-slate-800 hover:bg-slate-900 text-white font-bold px-4 py-2 rounded-xl transition cursor-pointer">Tutup</button>
+            </div>
         </div>
     </div>
 
-    <!-- SCRIPT FILTER OTOMATIS & RENDER TABEL -->
+    <!-- SCRIPT JAVASCRIPT -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const filterParam = urlParams.get('filter');
+        const urlParams = new URLSearchParams(window.location.search);
+        const filterStatus = urlParams.get('status');
 
-            let semuaSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb') || '[]');
-            const tbody = document.getElementById('tabelSiswaBody');
+        if (filterStatus) {
+            document.getElementById('bannerBadge').innerText = "FILTER AKTIF: " + filterStatus.toUpperCase();
+            document.getElementById('bannerTitle').innerText = "Daftar Siswa Status: " + filterStatus;
+            document.getElementById('bannerDesc').innerText = "Menampilkan data calon siswa secara khusus berdasarkan status " + filterStatus + ".";
+            document.getElementById('resetFilterBtn').classList.remove('hidden');
+        }
 
-            if (filterParam) {
-                const info = document.getElementById('infoFilterStatus');
-                info.classList.remove('hidden');
-                info.innerText = "Filter Aktif: " + filterParam;
+        function loadData(searchQuery = '') {
+            const dataDefaultAwal = [
+                { id: "s_1", nama: "MUHAMMAD RIZKY PRATAMA", nisn: "0079912305", sekolah: "SMP Negeri 1 Cikarang Utara", telepon: "081234567890", jurusan: "Teknik Komputer dan Jaringan (TKJ)", jalur: "Zonasi", tgl: "12 Mei 2026", status: "Ditolak", foto: "" },
+                { id: "s_2", nama: "SITI RAHMA AZZAHRA", nisn: "0087654321", sekolah: "SMPN 2 Tambun Selatan", telepon: "081987654321", jurusan: "Akuntansi dan Keuangan Lembaga (AK)", jalur: "Prestasi", tgl: "12 Mei 2026", status: "Terverifikasi", foto: "" },
+                { id: "s_3", nama: "BUDI SANTOSO WIBOWO", nisn: "0089876542", sekolah: "MTsN 1 Bekasi", telepon: "085612345678", jurusan: "Teknik Bisnis Sepeda Motor (TSM)", jalur: "Afirmasi", tgl: "13 Mei 2026", status: "Terverifikasi", foto: "" },
+                { id: "s_4", nama: "DEWI LESTARI", nisn: "0084561239", sekolah: "SMP Swasta Don Bosco Cikarang", telepon: "087788990011", jurusan: "Teknik Kendaraan Ringan (TKR)", jalur: "Zonasi", tgl: "13 Mei 2026", status: "Ditolak", foto: "" },
+                { id: "s_5", nama: "AHHMAD NUR ALI RAMADHAN", nisn: "2842445", sekolah: "SMPN 1 GUNUNG SINDUR", telepon: "081299887766", jurusan: "Teknik Komputer dan Jaringan (TKJ)", jalur: "Prestasi", tgl: "14 Mei 2026", status: "Menunggu", foto: "" },
+                { id: "s_6", nama: "ABDUL", nisn: "2328839", sekolah: "SMPN 2 CIKARANG TIMUR", telepon: "081344556677", jurusan: "Akuntansi dan Keuangan Lembaga (AK)", jalur: "Zonasi", tgl: "14 Mei 2026", status: "Terverifikasi", foto: "" },
+                { id: "s_7", nama: "UJANG", nisn: "26240569", sekolah: "SMPN 2 CIKARANG BARAT", telepon: "085722334455", jurusan: "Teknik Bisnis Sepeda Motor (TSM)", jalur: "Zonasi", tgl: "15 Mei 2026", status: "Revisi", foto: "" },
+                { id: "s_8", nama: "SUMADI", nisn: "3828925", sekolah: "SMPN 2 BEKASI BARAT", telepon: "087811223344", jurusan: "Teknik Komputer dan Jaringan (TKJ)", jalur: "Zonasi", tgl: "15 Mei 2026", status: "Terverifikasi", foto: "" }
+            ];
+
+            let daftarSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb'));
+            if (!daftarSiswa) {
+                daftarSiswa = dataDefaultAwal;
+                localStorage.setItem('semua_siswa_ppdb', JSON.stringify(daftarSiswa));
             }
 
-            renderTabel(semuaSiswa, filterParam);
-        });
+            if (!localStorage.getItem('trash_siswa_ppdb')) {
+                localStorage.setItem('trash_siswa_ppdb', JSON.stringify([]));
+            }
+            updateTrashCount();
 
-        function renderTabel(data, filterStatus = null) {
-            const tbody = document.getElementById('tabelSiswaBody');
+            const tbody = document.getElementById('table-siswa');
             tbody.innerHTML = '';
 
-            let filteredData = data;
-            if (filterStatus === 'Terverifikasi') {
-                filteredData = data.filter(s => s.status === 'Terverifikasi');
-            } else if (filterStatus === 'Menunggu') {
-                filteredData = data.filter(s => !s.status || s.status === 'Menunggu' || s.status === 'Menunggu Validasi' || s.status === 'Revisi');
-            }
+            const filteredData = daftarSiswa.filter(s => {
+                let matchStatus = true;
+                if (filterStatus) {
+                    if (filterStatus.toLowerCase() === 'ditolak') {
+                        matchStatus = s.status.toLowerCase() === 'ditolak' || s.status.toLowerCase() === 'revisi';
+                    } else if (filterStatus.toLowerCase() === 'menunggu') {
+                        matchStatus = s.status.toLowerCase() === 'menunggu' || s.status.toLowerCase() === 'menunggu validasi' || s.status.toLowerCase() === 'revisi';
+                    } else {
+                        matchStatus = s.status.toLowerCase() === filterStatus.toLowerCase();
+                    }
+                }
+
+                let matchSearch = (s.nama && s.nama.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                    (s.nisn && s.nisn.toLowerCase().includes(searchQuery.toLowerCase()));
+
+                return matchStatus && matchSearch;
+            });
 
             if (filteredData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">Tidak ada data siswa ditemukan untuk kategori ini.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="9" class="p-8 text-center text-slate-400 font-medium">Tidak ada data siswa yang sesuai dengan filter atau pencarian ini.</td></tr>`;
                 return;
             }
 
-            filteredData.forEach((s, idx) => {
-                let badgeStatus = '<span class="bg-amber-50 text-amber-700 border border-amber-200 px-2.5 py-1 rounded-full font-bold">Menunggu</span>';
-                if (s.status === 'Terverifikasi') {
-                    badgeStatus = '<span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-full font-bold">Terverifikasi</span>';
-                } else if (s.status === 'Ditolak') {
-                    badgeStatus = '<span class="bg-rose-50 text-rose-700 border border-rose-200 px-2.5 py-1 rounded-full font-bold">Ditolak</span>';
-                } else if (s.status === 'Revisi') {
-                    badgeStatus = '<span class="bg-orange-50 text-orange-700 border border-orange-200 px-2.5 py-1 rounded-full font-bold">Revisi</span>';
-                }
+            filteredData.forEach((siswa, index) => {
+                let badgeClass = "bg-amber-100 text-amber-700";
+                if (siswa.status === 'Terverifikasi') badgeClass = "bg-emerald-100 text-emerald-700";
+                else if (siswa.status === 'Ditolak') badgeClass = "bg-rose-100 text-rose-700";
+                else if (siswa.status === 'Revisi') badgeClass = "bg-orange-100 text-orange-700";
 
-                let row = document.createElement('tr');
-                row.className = "hover:bg-slate-50/80 transition";
-                row.innerHTML = `
-                    <td class="p-3 font-bold text-slate-900 flex items-center space-x-2">
-                        <div class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs">${s.nama.charAt(0)}</div>
-                        <span>${s.nama}</span>
-                    </td>
-                    <td class="p-3 text-slate-600">${s.nisn}</td>
-                    <td class="p-3 text-slate-600">${s.sekolah}</td>
-                    <td class="p-3"><span class="bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">${s.jalur}</span></td>
-                    <td class="p-3 text-center">${badgeStatus}</td>
-                    <td class="p-3 text-center">
-                        <a href="detail-siswa.html?id=${s.id || idx}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-3 py-1.5 rounded-lg shadow-sm transition inline-block">Periksa</a>
-                    </td>
+                let inisial = siswa.nama ? siswa.nama.charAt(0).toUpperCase() : 'S';
+                let nomorUrut = index + 1;
+                let siswaIdUnik = siswa.id || ('s_' + index);
+
+                let rawJurusan = siswa.jurusan || 'Teknik Komputer dan Jaringan (TKJ)';
+                let singkatanJurusan = "TKJ";
+                if (rawJurusan.includes("Akuntansi") || rawJurusan.includes("AK")) singkatanJurusan = "AK";
+                else if (rawJurusan.includes("Sepeda Motor") || rawJurusan.includes("TSM")) singkatanJurusan = "TSM";
+                else if (rawJurusan.includes("Kendaraan Ringan") || rawJurusan.includes("TKR")) singkatanJurusan = "TKR";
+
+                let rawJalur = siswa.jalur || 'Zonasi';
+                let labelJalur = rawJalur;
+                if (rawJalur.includes("Perpindahan Tugas")) labelJalur = "Mutasi";
+
+                let noTelepon = siswa.telepon || siswa.noHp || '-';
+
+                let row = `
+                    <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition">
+                        <td class="p-4 text-center font-bold text-slate-500">${nomorUrut}</td>
+                        <td class="p-4 flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center flex-shrink-0">${inisial}</div>
+                            <span class="font-bold text-slate-800">${siswa.nama}</span>
+                        </td>
+                        <td class="p-4 font-semibold">${siswa.nisn}</td>
+                        <td class="p-4 text-slate-600">${siswa.sekolah}</td>
+                        <td class="p-4 font-medium text-slate-700">
+                            <a href="https://wa.me/${noTelepon.replace(/[^0-9]/g, '')}" target="_blank" class="text-emerald-600 hover:underline flex items-center space-x-1">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                                <span>${noTelepon}</span>
+                            </a>
+                        </td>
+                        <td class="p-4"><span class="bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-md text-xs font-bold whitespace-nowrap">${singkatanJurusan}</span></td>
+                        <td class="p-4"><span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-md font-bold whitespace-nowrap inline-block">${labelJalur}</span></td>
+                        <td class="p-4"><span class="${badgeClass} px-3 py-1 rounded-full font-bold whitespace-nowrap inline-block">${siswa.status}</span></td>
+                        <td class="p-4 text-center">
+                            <div class="flex items-center justify-center gap-1.5 whitespace-nowrap">
+                                <a href="detail-siswa.html?id=${siswaIdUnik}" class="bg-indigo-600 text-white px-3 py-1.5 rounded-xl font-bold hover:bg-indigo-700 transition inline-block shadow-sm">
+                                    <i class="fa-solid fa-eye mr-1"></i> Periksa
+                                </a>
+                                <button onclick="pindahKeTrash('${siswaIdUnik}')" class="bg-rose-500 text-white px-3 py-1.5 rounded-xl font-bold hover:bg-rose-600 transition inline-block shadow-sm cursor-pointer">
+                                    <i class="fa-solid fa-trash-can mr-1"></i> Hapus
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
                 `;
-                tbody.appendChild(row);
+                tbody.innerHTML += row;
             });
         }
 
-        function cariSiswa() {
-            let keyword = document.getElementById('inputCari').value.toLowerCase();
-            let semuaSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb') || '[]');
-            let hasil = semuaSiswa.filter(s => s.nama.toLowerCase().includes(keyword) || s.nisn.includes(keyword));
-            renderTabel(hasil);
+        function pindahKeTrash(idSiswa) {
+            if (document.getElementById('customModalOverlay')) return;
+            document.activeElement.blur();
+
+            const modalOverlay = document.createElement('div');
+            modalOverlay.id = 'customModalOverlay';
+            modalOverlay.className = "fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300";
+
+            modalOverlay.innerHTML = `
+                <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl border border-slate-100 transform transition-all scale-100 space-y-4 text-center">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto text-lg">
+                        <i class="fa-solid fa-trash-arrow-up"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-slate-900 mb-1">Pindahkan ke Sampah</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">Data siswa ini akan dipindahkan ke tempat sampah dan dapat dipulihkan kembali jika diperlukan.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-2">
+                        <button id="modalBatal" type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl text-xs transition cursor-pointer">
+                            Batal
+                        </button>
+                        <button id="modalYa" type="button" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-md shadow-rose-600/20 transition cursor-pointer">
+                            Ya, Pindahkan
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modalOverlay);
+
+            document.getElementById('modalBatal').addEventListener('click', () => {
+                modalOverlay.remove();
+            });
+
+            document.getElementById('modalYa').addEventListener('click', () => {
+                let daftarSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb')) || [];
+                let trashSiswa = JSON.parse(localStorage.getItem('trash_siswa_ppdb')) || [];
+
+                let index = daftarSiswa.findIndex((s, idx) => (s.id && s.id === idSiswa) || ('s_' + idx) === idSiswa);
+                if (index !== -1) {
+                    let siswaDihapus = daftarSiswa.splice(index, 1)[0];
+                    trashSiswa.push(siswaDihapus);
+
+                    localStorage.setItem('semua_siswa_ppdb', JSON.stringify(daftarSiswa));
+                    localStorage.setItem('trash_siswa_ppdb', JSON.stringify(trashSiswa));
+                }
+
+                modalOverlay.remove();
+                loadData(document.getElementById('searchInput').value);
+                updateTrashCount();
+                tampilkanNotifikasi("Data berhasil dipindahkan ke Tempat Sampah!");
+            });
         }
+
+        function bukaModalTrash() {
+            let trashSiswa = JSON.parse(localStorage.getItem('trash_siswa_ppdb') || '[]');
+            const tbodyTrash = document.getElementById('table-trash');
+            tbodyTrash.innerHTML = '';
+
+            if (trashSiswa.length === 0) {
+                tbodyTrash.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-slate-400 font-medium">Tempat sampah masih kosong.</td></tr>`;
+            } else {
+                trashSiswa.forEach((siswa, index) => {
+                    let inisial = siswa.nama ? siswa.nama.charAt(0).toUpperCase() : 'S';
+                    let trashId = siswa.id || ('trash_' + index);
+                    let row = `
+                        <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition">
+                            <td class="p-3 text-center font-bold text-slate-500">${index + 1}</td>
+                            <td class="p-3 flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold flex items-center justify-center flex-shrink-0 text-xs">${inisial}</div>
+                                <span class="font-bold text-slate-800">${siswa.nama}</span>
+                            </td>
+                            <td class="p-3 font-semibold">${siswa.nisn}</td>
+                            <td class="p-3 text-slate-600">${siswa.sekolah}</td>
+                            <td class="p-3 text-center">
+                                <div class="flex items-center justify-center gap-1.5">
+                                    <button onclick="pulihkanSiswa('${trashId}')" class="bg-emerald-600 text-white px-3 py-1.5 rounded-xl font-bold hover:bg-emerald-700 transition shadow-sm cursor-pointer text-[11px]">
+                                        <i class="fa-solid fa-rotate-left mr-1"></i> Pulihkan
+                                    </button>
+                                    <button onclick="hapusPermanen('${trashId}')" class="bg-rose-600 text-white px-3 py-1.5 rounded-xl font-bold hover:bg-rose-700 transition shadow-sm cursor-pointer text-[11px]">
+                                        <i class="fa-solid fa-xmark mr-1"></i> Hapus Permanen
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    tbodyTrash.innerHTML += row;
+                });
+            }
+
+            document.getElementById('modalTrash').classList.remove('hidden');
+            document.getElementById('modalTrash').classList.add('flex');
+        }
+
+        function tutupModalTrash() {
+            document.getElementById('modalTrash').classList.remove('flex');
+            document.getElementById('modalTrash').classList.add('hidden');
+        }
+
+        function pulihkanSiswa(idTrash) {
+            let daftarSiswa = JSON.parse(localStorage.getItem('semua_siswa_ppdb') || '[]');
+            let trashSiswa = JSON.parse(localStorage.getItem('trash_siswa_ppdb') || '[]');
+
+            let index = trashSiswa.findIndex((s, idx) => (s.id && s.id === idTrash) || ('trash_' + idx) === idTrash);
+            if (index !== -1) {
+                let siswaPulih = trashSiswa.splice(index, 1)[0];
+                daftarSiswa.push(siswaPulih);
+
+                localStorage.setItem('semua_siswa_ppdb', JSON.stringify(daftarSiswa));
+                localStorage.setItem('trash_siswa_ppdb', JSON.stringify(trashSiswa));
+
+                bukaModalTrash();
+                loadData(document.getElementById('searchInput').value);
+                updateTrashCount();
+                tampilkanNotifikasi("Data siswa berhasil dipulihkan!");
+            }
+        }
+
+        function hapusPermanen(idTrash) {
+            let trashSiswa = JSON.parse(localStorage.getItem('trash_siswa_ppdb') || '[]');
+            let index = trashSiswa.findIndex((s, idx) => (s.id && s.id === idTrash) || ('trash_' + idx) === idTrash);
+            if (index !== -1) {
+                trashSiswa.splice(index, 1);
+                localStorage.setItem('trash_siswa_ppdb', JSON.stringify(trashSiswa));
+
+                bukaModalTrash();
+                updateTrashCount();
+                tampilkanNotifikasi("Data berhasil dihapus secara permanen!");
+            }
+        }
+
+        function updateTrashCount() {
+            let trashSiswa = JSON.parse(localStorage.getItem('trash_siswa_ppdb') || '[]');
+            document.getElementById('trashCount').innerText = trashSiswa.length;
+        }
+
+        function tampilkanNotifikasi(pesan) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl text-xs font-bold z-50 flex items-center space-x-2.5 transition-all duration-300";
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> <span>${pesan}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function (e) {
+            loadData(e.target.value);
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            loadData();
+        });
     </script>
 </body>
 
